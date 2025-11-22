@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yum Station - Menu</title>
+    <!-- Site Icon (Favicon) -->
+    <link rel="icon" href="yumstation logo.jpg" type="image/jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Safety check: Wait for tailwind to load before configuring
+        function initTailwind() {
+            if (typeof tailwind === 'undefined') {
+                setTimeout(initTailwind, 10);
+                return;
+            }
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            'yum-yellow': '#FFD700',
+                            'yum-orange': '#F2891C', // Your specific brand orange
+                            'yum-red': '#DC2626', // Keeping for specific uses if needed, but reducing its general use
+                            'yum-dark': '#1F2937',
+                        },
+                        fontFamily: {
+                            'brand': ['Lobster', 'cursive'],
+                            'body': ['Poppins', 'sans-serif'],
+                        }
+                    }
+                }
+            }
+        }
+        initTailwind();
+    </script>
+    <style>
+        body {
+            background-image: 
+                linear-gradient(135deg, rgba(255, 245, 204, 0.9) 0%, rgba(255, 230, 128, 0.9) 100%),
+                url('background.jpg'); /* Make sure your image file is named 'background.jpg' and is in this folder */
+            
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .category-header {
+            position: relative;
+            display: inline-block;
+        }
+        /* Changed category-header::after background to yum-orange */
+        .category-header::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background: #F2891C; /* Now uses yum-orange */
+            margin: 4px auto 0;
+            border-radius: 2px;
+        }
+        .menu-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        .menu-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="font-body text-yum-dark antialiased pb-20">
+
+    <!-- Navigation / Header --><nav class="bg-yum-orange text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <!-- LOGO UPDATE: Uses local file with fallback to icon --><div class="w-10 h-10 bg-white rounded-full border-2 border-yum-yellow overflow-hidden flex items-center justify-center">
+                    <img src="yumstation logo.jpg" alt="Yum Station" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="hidden w-full h-full items-center justify-center text-yum-red font-bold text-xl">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                </div>
+                <h1 class="font-brand text-2xl tracking-wide">Yum Station</h1>
+            </div>
+            <a href="https://wa.me/2348061781845" class="bg-white text-green-600 px-4 py-1.5 rounded-full font-semibold text-sm flex items-center gap-2 shadow-md hover:bg-gray-100 transition">
+                <i class="fab fa-whatsapp text-lg"></i> Order
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section --><header class="text-center py-8 px-4">
+        <!-- LOGO ADDED TO HERO -->
+         <!-- <div class="relative w-28 h-28 mx-auto mb-4 rounded-full border-4 border-white shadow-lg overflow-hidden bg-white">
+            <img src="yumstation logo.jpg" alt="Yum Station Logo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/200x200/FFD700/DC2626?text=Yum+Station'">
+        </div> -->
+        
+        <h2 class="text-3xl font-bold text-yum-orange mb-2">Crave and Enjoy</h2> <!-- Changed to yum-orange --><p class="text-gray-700 max-w-md mx-auto">Welcome to Yum Station! Browse our delicious menu below and click the WhatsApp button to place your order.</p>
+        
+        <div class="mt-6 flex justify-center gap-4 text-sm font-semibold">
+            <a href="#rice" class="px-3 py-1 bg-white rounded-full shadow text-yum-orange hover:bg-yum-orange hover:text-white transition">Rice</a> <!-- Changed to yum-orange --><a href="#soups" class="px-3 py-1 bg-white rounded-full shadow text-yum-orange hover:bg-yum-orange hover:text-white transition">Soups</a> <!-- Changed to yum-orange --><a href="#grill" class="px-3 py-1 bg-white rounded-full shadow text-yum-orange hover:bg-yum-orange hover:text-white transition">Grill</a> <!-- Changed to yum-orange --><a href="#drinks" class="px-3 py-1 bg-white rounded-full shadow text-yum-orange hover:bg-yum-orange hover:text-white transition">Drinks</a> <!-- Changed to yum-orange --></div>
+    </header>
+
+    <!-- Menu Content --><main class="container mx-auto px-4 max-w-3xl space-y-8">
+
+        <!-- Rice Section --><section id="rice" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-yum-orange">
+            <div class="bg-yum-orange/10 p-4 text-center">
+                <h3 class="font-brand text-3xl text-yum-orange category-header">Rice</h3> <!-- Changed to yum-orange --></div>
+            <div class="p-4 divide-y divide-gray-100">
+                <!-- Item --><div class="py-3">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <h4 class="font-bold text-lg">Coconut Rice</h4>
+                    </div>
+                    <div class="flex justify-between text-sm text-gray-600 mt-1">
+                        <span>Jumbo Pack</span>
+                        <span class="font-bold text-yum-orange">N2,400</span> <!-- Changed to yum-orange --></div>
+                    <div class="flex justify-between text-sm text-gray-600 mt-1">
+                        <span>Mini Pack</span>
+                        <span class="font-bold text-yum-orange">N1,200</span> <!-- Changed to yum-orange --></div>
+                </div>
+                <!-- Item --><div class="py-3">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <h4 class="font-bold text-lg">Fried Rice</h4>
+                    </div>
+                    <div class="flex justify-between text-sm text-gray-600 mt-1">
+                        <span>Jumbo Pack</span>
+                        <span class="font-bold text-yum-orange">N2,800</span> <!-- Changed to yum-orange --></div>
+                    <div class="flex justify-between text-sm text-gray-600 mt-1">
+                        <span>Mini Pack</span>
+                        <span class="font-bold text-yum-orange">N1,400</span> <!-- Changed to yum-orange --></div>
+                </div>
+                <!-- Item --><div class="py-3">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <h4 class="font-bold text-lg">Jollof Rice</h4>
+                    </div>
+                    <div class="flex justify-between text-sm text-gray-600 mt-1">
+                        <span>Jumbo Pack</span>
+                        <span class="font-bold text-yum-orange">N2,400</span> <!-- Changed to yum-orange --></div>
+                    <div class="flex justify-between text-sm text-gray-600 mt-1">
+                        <span>Mini Pack</span>
+                        <span class="font-bold text-yum-orange">N1,200</span> <!-- Changed to yum-orange --></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pasta Section --><section id="pasta" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-yum-yellow">
+            <div class="bg-yum-yellow/10 p-4 text-center">
+                <h3 class="font-brand text-3xl text-yum-orange category-header">Pasta</h3> <!-- Changed to yum-orange --></div>
+            <div class="p-4 divide-y divide-gray-100">
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg">Jumbo Pack</span>
+                    <span class="font-bold text-yum-orange text-lg">N2,500</span> <!-- Changed to yum-orange --></div>
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg">Mini Pack</span>
+                    <span class="font-bold text-yum-orange text-lg">N2,000</span> <!-- Changed to yum-orange --></div>
+            </div>
+        </section>
+
+        <!-- Soups Section --><section id="soups" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-green-500">
+            <div class="bg-green-50 p-4 text-center">
+                <h3 class="font-brand text-3xl text-green-600 category-header">Soups</h3>
+            </div>
+            <div class="p-4 space-y-6">
+                
+                <!-- Ogbono --><div>
+                    <h4 class="font-bold text-xl text-yum-orange mb-2">Ogbono</h4> <!-- Changed to yum-orange --><div class="space-y-2 text-sm">
+                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
+                            <span>With Garri</span>
+                            <span class="font-bold">N2,100</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
+                            <span>With Semo</span>
+                            <span class="font-bold">N2,500</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
+                            <span>With Poundo</span>
+                            <span class="font-bold">N2,500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Egusi --><div>
+                    <h4 class="font-bold text-xl text-yum-orange mb-2">Egusi</h4> <!-- Changed to yum-orange --><div class="space-y-2 text-sm">
+                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
+                            <span>With Garri</span>
+                            <span class="font-bold">N1,900</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
+                            <span>With Semo</span>
+                            <span class="font-bold">N2,300</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
+                            <span>With Poundo</span>
+                            <span class="font-bold">N2,300</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Afang --><div>
+                    <h4 class="font-bold text-xl text-yum-orange mb-2">Afang</h4> <!-- Changed to yum-orange --><div class="space-y-2 text-sm">
+                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
+                            <span>With Garri</span>
+                            <span class="font-bold">N1,900</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
+                            <span>With Semo</span>
+                            <span class="font-bold">N2,300</span>
+                        </div>
+                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
+                            <span>With Poundo</span>
+                            <span class="font-bold">N2,300</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Grill & Burger Section --><section id="grill" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-red-600">
+            <div class="bg-red-50 p-4 text-center">
+                <h3 class="font-brand text-3xl text-yum-orange category-header">Grill & Burger</h3> <!-- Changed to yum-orange --></div>
+            <div class="p-4 space-y-6">
+                
+                <!-- Shawarma --><div>
+                    <h4 class="font-bold text-xl text-yum-orange mb-2">Shawarma <i class="fas fa-fire text-yum-orange text-sm"></i></h4> <!-- Changed to yum-orange --><div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span>Regular (Beef)</span>
+                            <span class="font-bold">N3,500</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Yummy Special</span>
+                            <span class="font-bold">N4,500</span>
+                        </div>
+                         <div class="flex justify-between">
+                            <span>Chicken</span>
+                            <span class="font-bold">N4,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-gray-200">
+
+                <!-- Burger --><div>
+                    <h4 class="font-bold text-xl text-yum-orange mb-2">Burger <i class="fas fa-hamburger text-yum-orange text-sm"></i></h4> <!-- Changed to yum-orange --><div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span>Regular (Beef)</span>
+                            <span class="font-bold">N3,500</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Yummy Special</span>
+                            <span class="font-bold">N4,500</span>
+                        </div>
+                         <div class="flex justify-between">
+                            <span>Chicken</span>
+                            <span class="font-bold">N4,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-gray-200">
+                
+                <!-- Chips --><div class="flex justify-between items-center">
+                    <h4 class="font-bold text-xl text-yum-orange">Chips</h4>
+                    <span class="font-bold text-lg">N750</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Protein Section --><section id="protein" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-yum-dark">
+            <div class="bg-gray-100 p-4 text-center">
+                <h3 class="font-brand text-3xl text-yum-dark category-header">Protein</h3>
+            </div>
+            <div class="p-4 divide-y divide-gray-200">
+                 <div class="py-2 flex justify-between items-center">
+                    <span>Chicken</span>
+                    <span class="font-bold text-yum-orange">N3,000</span> <!-- Changed to yum-orange --></div>
+                 <div class="py-2 flex justify-between items-center">
+                    <span>Fish</span>
+                    <span class="font-bold text-yum-orange">N2,500</span> <!-- Changed to yum-orange --></div>
+                 <div class="py-2 flex justify-between items-center">
+                    <span>Turkey</span>
+                    <span class="font-bold text-yum-orange">N5,000</span> <!-- Changed to yum-orange --></div>
+                 <div class="py-2 flex justify-between items-center">
+                    <span>Goat Meat</span>
+                    <span class="font-bold text-yum-orange">N500</span> <!-- Changed to yum-orange --></div>
+                 <div class="py-2 flex justify-between items-center">
+                    <span>Beef</span>
+                    <span class="font-bold text-yum-orange">N500</span> <!-- Changed to yum-orange --></div>
+            </div>
+        </section>
+
+        <!-- Drinks Section --><section id="drinks" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-blue-400">
+            <div class="bg-blue-50 p-4 text-center">
+                <h3 class="font-brand text-3xl text-blue-500 category-header">Drinks</h3>
+            </div>
+            <div class="p-4 grid grid-cols-1 gap-2 text-sm">
+                <!-- Drink List Generated from Image --><div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                    <span>Water</span>
+                    <span class="font-bold">N300</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
+                    <span>Coke / Fanta / Pepsi</span>
+                    <span class="font-bold">N500</span>
+                </div>
+                 <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                    <span>Predator</span>
+                    <span class="font-bold">N600</span>
+                </div>
+                 <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
+                    <span>Malta Guinness / Fayrouz / Amstel</span>
+                    <span class="font-bold">N800</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                    <span>Viju Yoghurt</span>
+                    <span class="font-bold">N800</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
+                    <span>Hollandia Medium</span>
+                    <span class="font-bold">N900</span>
+                </div>
+                 <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                    <span>Chivita Active (Small)</span>
+                    <span class="font-bold">N1,300</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
+                    <span>Exotic Big Size</span>
+                    <span class="font-bold">N1,800</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                    <span>Hollandia Big Size</span>
+                    <span class="font-bold">N1,900</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
+                    <span>Chivita Juice (Big)</span>
+                    <span class="font-bold">N2,100</span>
+                </div>
+                 <div class="flex justify-between items-center p-2 bg-yellow-50 border border-yellow-100 rounded">
+                    <span class="font-bold text-yum-orange"><i class="fas fa-ice-cream"></i> Parfait</span> <!-- Changed to yum-orange --><span class="font-bold text-lg">N3,000</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer --><footer class="bg-yum-dark text-white mt-12 py-8 px-4 text-center">
+        <div class="mb-6">
+            <h2 class="font-brand text-3xl text-white mb-2">Yum Station</h2>
+            <p class="text-gray-400 text-sm">Crave and Enjoy</p>
+        </div>
+        
+        <div class="flex gap-6 justify-center items-center mb-8">
+             <a href="tel:08061781845" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-yum-yellow transition shadow-lg" aria-label="Call Us">
+                <i class="fas fa-phone-alt text-xl"></i>
+            </a>
+            <a href="https://instagram.com/yumstationfoods" target="_blank" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-pink-500 transition shadow-lg" aria-label="Instagram">
+                <i class="fab fa-instagram text-2xl"></i>
+            </a>
+            <a href="https://wa.me/2348061781845" target="_blank" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-green-500 transition shadow-lg" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp text-2xl"></i>
+            </a>
+        </div>
+
+        <p class="text-xs text-gray-500 mb-2">&copy; 2025 Yum Station. All rights reserved.</p>
+        <p class="text-xs text-gray-600">
+            Built by <a href="https://tacdigitals.com" target="_blank" class="text-gray-500 hover:text-yum-yellow transition decoration-dotted underline-offset-2">TacDigitals</a>
+        </p>
+    </footer>
+
+    <!-- Floating Action Button --><a href="https://wa.me/2348061781845" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-green-600 transition animate-bounce z-50">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
