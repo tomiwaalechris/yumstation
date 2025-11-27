@@ -38,7 +38,7 @@
     <style>
         body {
             background-image: 
-                linear-gradient(135deg, rgba(255, 245, 204, 0.98) 0%, rgba(255, 230, 128, 0.98) 100%),
+                linear-gradient(135deg, rgba(255, 245, 204, 0.94) 0%, rgba(255, 230, 128, 0.94) 100%),
                 url('background.jpg'); 
             background-attachment: fixed;
             background-size: cover;
@@ -72,11 +72,7 @@
     <nav class="bg-yum-orange text-white shadow-lg sticky top-0 z-40">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-white rounded-full border-2 border-yum-yellow overflow-hidden flex items-center justify-center shadow-sm">
-                    <div class="w-full h-full items-center justify-center text-yum-red font-bold text-xl flex">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                </div>
+                <img src="logo.png" alt="Yum Station" class="w-12 h-12 rounded-full border-2 border-yum-yellow bg-white object-contain shadow-sm">
                 <h1 class="font-brand text-2xl tracking-wide text-white drop-shadow-md">Yum Station</h1>
             </div>
             <button onclick="toggleCart()" class="bg-white text-yum-red px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-md hover:bg-gray-100 transition relative">
@@ -185,23 +181,19 @@
                 <i class="fas fa-seedling text-2xl text-yellow-900/30"></i>
             </div>
             <div class="p-4 divide-y divide-gray-100">
-                <div class="py-3 flex justify-between items-center">
+                <div class="py-3 flex justify-between items-center opacity-70">
                     <div class="flex flex-col">
                         <span class="font-bold text-gray-800">Trenches Style</span>
                         <span class="text-xs text-gray-500">Beans + Garri (Milk & Sugar)</span>
                     </div>
-                    <button onclick="addToCart('Beans Trenches Style', 4500)" class="btn-add bg-yellow-50 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold border border-yellow-100">
-                        N4,500 <i class="fas fa-plus ml-1"></i>
-                    </button>
+                    <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                 </div>
-                <div class="py-3 flex justify-between items-center">
+                <div class="py-3 flex justify-between items-center opacity-70">
                     <div class="flex flex-col">
                         <span class="font-bold text-gray-800">Nepo Style</span>
                         <span class="text-xs text-gray-500">Beans + Grilled Bread</span>
                     </div>
-                    <button onclick="addToCart('Beans Nepo Style', 4000)" class="btn-add bg-yellow-50 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold border border-yellow-100">
-                        N4,000 <i class="fas fa-plus ml-1"></i>
-                    </button>
+                    <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                 </div>
             </div>
         </section>
@@ -526,20 +518,20 @@
                         Station Subs
                     </h4>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100">
+                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100 opacity-70">
                             <span class="font-semibold text-gray-700">Beef Sub</span>
-                            <button onclick="addToCart('Beef Sub', 4500)" class="btn-add bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm font-bold border border-purple-100">N4,500 <i class="fas fa-plus ml-1"></i></button>
+                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                         </div>
-                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100">
+                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100 opacity-70">
                             <span class="font-semibold text-gray-700">Chicken Sub</span>
-                            <button onclick="addToCart('Chicken Sub', 5500)" class="btn-add bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm font-bold border border-purple-100">N5,500 <i class="fas fa-plus ml-1"></i></button>
+                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                         </div>
-                        <div class="flex justify-between items-center border p-3 rounded-lg border-purple-100 bg-purple-50">
+                        <div class="flex justify-between items-center border p-3 rounded-lg border-purple-100 bg-purple-50 opacity-70">
                             <div class="flex flex-col">
                                 <span class="font-bold text-purple-700">Yummy Special Sub</span>
                                 <span class="text-xs text-gray-600">Chicken + Beef + Suya + Mozzarella</span>
                             </div>
-                            <button onclick="addToCart('Yummy Special Sub', 6000)" class="btn-add bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">N6,000 <i class="fas fa-plus ml-1"></i></button>
+                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                         </div>
                     </div>
                 </div>
@@ -550,19 +542,19 @@
                         Loaded Fries
                     </h4>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-start border-b border-gray-100 pb-2">
+                        <div class="flex justify-between items-start border-b border-gray-100 pb-2 opacity-70">
                             <div class="flex flex-col">
                                 <span class="font-bold text-gray-800">Regular Loaded</span>
                                 <span class="text-xs text-gray-500">Chicken + Hotdogs</span>
                             </div>
-                            <button onclick="addToCart('Regular Loaded Fries', 7000)" class="btn-add bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm font-bold border border-purple-100">N7,000 <i class="fas fa-plus ml-1"></i></button>
+                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                         </div>
-                        <div class="flex justify-between items-start">
+                        <div class="flex justify-between items-start opacity-70">
                             <div class="flex flex-col">
                                 <span class="font-bold text-purple-700">Yumiloaded Special</span>
                                 <span class="text-xs text-gray-500">Beef + Chicken + Suya + Hotdog + Plantain</span>
                             </div>
-                            <button onclick="addToCart('Yumiloaded Special Fries', 7500)" class="btn-add bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">N7,500 <i class="fas fa-plus ml-1"></i></button>
+                            <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                         </div>
                     </div>
                 </div>
@@ -636,15 +628,41 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-yum-dark text-white mt-12 py-10 px-4 text-center mb-16">
-        <div class="mb-8">
-            <h2 class="font-brand text-4xl text-white mb-2">Yum Station</h2>
-            <p class="text-gray-400 text-sm tracking-widest uppercase">Crave and Enjoy</p>
+    <footer class="bg-yum-dark text-white mt-12 pt-16 pb-8 px-4 border-t-4 border-yum-orange">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <!-- Brand -->
+            <div>
+                 <div class="flex items-center gap-2 mb-4">
+                    <img src="logo.png" class="h-10 w-10 rounded-full border border-yum-yellow bg-white object-contain" alt="Logo">
+                    <h2 class="font-brand text-2xl text-yum-yellow">Yum Station</h2>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">Delicious meals prepared with love. Experience the taste of joy in every bite.</p>
+            </div>
+            <!-- Quick Links -->
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-white">Quick Menu</h3>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#rice" class="hover:text-yum-yellow transition">Rice</a></li>
+                    <li><a href="#pasta" class="hover:text-yum-yellow transition">Pasta</a></li>
+                    <li><a href="#burgers" class="hover:text-yum-yellow transition">Burgers</a></li>
+                    <li><a href="#specials" class="hover:text-yum-yellow transition">Specials</a></li>
+                </ul>
+            </div>
+            <!-- Contact -->
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-white">Connect</h3>
+                <div class="flex gap-4 text-xl mb-4">
+                    <a href="https://wa.me/2348061781845" class="text-gray-400 hover:text-yum-yellow transition"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-yum-yellow transition"><i class="fab fa-instagram"></i></a>
+                    <!-- <a href="#" class="text-gray-400 hover:text-yum-yellow transition"><i class="fab fa-facebook"></i></a> -->
+                </div>
+                <p class="text-gray-500 text-xs">Call us: 0806 178 1845</p>
+            </div>
         </div>
-        <div class="border-t border-gray-800 pt-6">
-            <p class="text-xs text-gray-500 mb-2">&copy; 2025 Yum Station. All rights reserved.</p>
+        <!-- Copyright -->
+        <div class="border-t border-gray-800 pt-8 text-center">
             <p class="text-xs text-gray-600">
-                Built by <a href="https://tacdigitals.com" target="_blank" class="text-gray-500 hover:text-yum-yellow transition decoration-dotted underline-offset-2">TacDigitals</a>
+                &copy; 2025 Yum Station. Built by <a href="https://tacdigitals.com" target="_blank" class="text-gray-500 hover:text-yum-yellow">TacDigitals</a>
             </p>
         </div>
     </footer>
