@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
-        // Safety check: Wait for tailwind to load before configuring
         function initTailwind() {
             if (typeof tailwind === 'undefined') {
                 setTimeout(initTailwind, 10);
@@ -39,448 +38,472 @@
     <style>
         body {
             background-image: 
-                linear-gradient(135deg, rgba(255, 245, 204, 0.9) 0%, rgba(255, 230, 128, 0.9) 100%),
+                linear-gradient(135deg, rgba(255, 245, 204, 0.96) 0%, rgba(255, 230, 128, 0.96) 100%),
                 url('background.jpg'); 
-            
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-        .category-header {
-            position: relative;
-            display: inline-block;
+        /* Consistent Section Headers */
+        .section-title {
+            font-family: 'Lobster', cursive;
+            letter-spacing: 0.05em;
         }
-        .category-header::after {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 4px;
-            background: #F2891C;
-            margin: 4px auto 0;
-            border-radius: 2px;
+        .section-card {
+            transition: transform 0.2s;
         }
-        .menu-card {
-            transition: transform 0.2s ease-in-out;
+        /* Custom Scrollbar for horizontal nav */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        .menu-card:active {
-            transform: scale(0.98);
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
     </style>
 </head>
-<body class="font-body text-yum-dark antialiased pb-20">
+<body class="font-body text-yum-dark antialiased pb-24">
 
+    <!-- Navigation -->
     <nav class="bg-yum-orange text-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-white rounded-full border-2 border-yum-yellow overflow-hidden flex items-center justify-center">
-                    <img src="yumstation logo.jpg" alt="Yum Station" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="w-10 h-10 bg-white rounded-full border-2 border-yum-yellow overflow-hidden flex items-center justify-center shadow-sm">
+                    <img src="yumstation logo.jpg" alt="YS" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                     <div class="hidden w-full h-full items-center justify-center text-yum-red font-bold text-xl">
                         <i class="fas fa-utensils"></i>
                     </div>
                 </div>
-                <h1 class="font-brand text-2xl tracking-wide">Yum Station</h1>
+                <h1 class="font-brand text-2xl tracking-wide text-white drop-shadow-md">Yum Station</h1>
             </div>
-            <a href="https://wa.me/2348061781845" class="bg-white text-green-600 px-4 py-1.5 rounded-full font-semibold text-sm flex items-center gap-2 shadow-md hover:bg-gray-100 transition">
-                <i class="fab fa-whatsapp text-lg"></i> Order
+            <a href="https://wa.me/2348061781845" class="bg-white text-green-600 px-5 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-md hover:bg-gray-100 transition transform hover:scale-105">
+                <i class="fab fa-whatsapp text-xl"></i> Order
             </a>
+        </div>
+        <!-- Scrollable Quick Links -->
+        <div class="bg-yum-dark text-white py-2 overflow-x-auto no-scrollbar">
+            <div class="container mx-auto px-4 flex gap-4 whitespace-nowrap text-sm font-medium">
+                <a href="#rice" class="hover:text-yum-yellow transition">Rice</a>
+                <a href="#beans" class="hover:text-yum-yellow transition">Beans</a>
+                <a href="#pasta" class="hover:text-yum-yellow transition">Pasta</a>
+                <a href="#yam" class="hover:text-yum-yellow transition">Yam</a>
+                <a href="#soups" class="hover:text-yum-yellow transition">Soups</a>
+                <a href="#burgers" class="hover:text-yum-yellow transition">Burgers</a>
+                <a href="#shawarma" class="hover:text-yum-yellow transition">Shawarma</a>
+                <a href="#specials" class="text-yum-yellow hover:text-white transition">Specials</a>
+                <a href="#drinks" class="hover:text-yum-yellow transition">Drinks</a>
+            </div>
         </div>
     </nav>
 
+    <!-- Hero -->
     <header class="text-center py-8 px-4">
-        <h2 class="text-3xl font-bold text-yum-orange mb-2">Crave and Enjoy</h2> 
-        <p class="text-gray-700 max-w-md mx-auto">Welcome to Yum Station! Browse our delicious menu below and click the WhatsApp button to place your order.</p>
-        
-        <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm font-semibold">
-            <a href="#rice" class="px-3 py-1 bg-white rounded-full shadow text-yum-orange hover:bg-yum-orange hover:text-white transition">Rice</a>
-            <a href="#soups" class="px-3 py-1 bg-white rounded-full shadow text-yum-orange hover:bg-yum-orange hover:text-white transition">Soups</a>
-            <a href="#grill" class="px-3 py-1 bg-white rounded-full shadow text-yum-orange hover:bg-yum-orange hover:text-white transition">Grill</a>
-            <a href="#beans" class="px-3 py-1 bg-white rounded-full shadow text-yum-orange hover:bg-yum-orange hover:text-white transition">Beans</a>
-            <a href="#drinks" class="px-3 py-1 bg-white rounded-full shadow text-yum-orange hover:bg-yum-orange hover:text-white transition">Drinks</a>
-        </div>
+        <h2 class="text-4xl font-brand text-yum-orange mb-2 drop-shadow-sm">Crave and Enjoy</h2> 
+        <p class="text-gray-700 max-w-md mx-auto font-medium">Explore our delicious menu. Click the Whatsapp button to place your order!</p>
     </header>
 
     <main class="container mx-auto px-4 max-w-3xl space-y-8">
 
-        <section id="rice" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-yum-orange">
-            <div class="bg-yum-orange/10 p-4 text-center">
-                <h3 class="font-brand text-3xl text-yum-orange category-header">Rice</h3> 
+        <!-- 1. RICE -->
+        <section id="rice" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-orange section-card">
+            <div class="bg-orange-50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-yum-orange section-title">Rice</h3>
+                <i class="fas fa-bowl-rice text-2xl text-yum-orange/30"></i>
             </div>
-            <div class="p-4 divide-y divide-gray-100">
+            <div class="p-5 divide-y divide-gray-100">
                 <div class="py-3">
-                    <div class="flex justify-between items-baseline mb-1">
-                        <h4 class="font-bold text-lg">Coconut Rice</h4>
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-bold text-lg text-gray-800">Coconut Rice</span>
                     </div>
-                    <div class="flex justify-between text-sm text-gray-600 mt-1">
-                        <span>Jumbo Pack</span>
-                        <span class="font-bold text-yum-orange">N2,400</span> 
-                    </div>
-                    <div class="flex justify-between text-sm text-gray-600 mt-1">
-                        <span>Mini Pack</span>
-                        <span class="font-bold text-yum-orange">N1,200</span> 
+                    <div class="flex gap-4 text-sm mt-1">
+                        <div class="bg-orange-50 px-2 py-1 rounded text-yum-dark">Jumbo: <span class="font-bold">N2,400</span></div>
+                        <div class="bg-gray-50 px-2 py-1 rounded text-gray-600">Mini: <span class="font-bold">N1,200</span></div>
                     </div>
                 </div>
                 <div class="py-3">
-                    <div class="flex justify-between items-baseline mb-1">
-                        <h4 class="font-bold text-lg">Fried Rice</h4>
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-bold text-lg text-gray-800">Fried Rice</span>
                     </div>
-                    <div class="flex justify-between text-sm text-gray-600 mt-1">
-                        <span>Jumbo Pack</span>
-                        <span class="font-bold text-yum-orange">N2,800</span> 
-                    </div>
-                    <div class="flex justify-between text-sm text-gray-600 mt-1">
-                        <span>Mini Pack</span>
-                        <span class="font-bold text-yum-orange">N1,400</span> 
+                    <div class="flex gap-4 text-sm mt-1">
+                        <div class="bg-orange-50 px-2 py-1 rounded text-yum-dark">Jumbo: <span class="font-bold">N2,800</span></div>
+                        <div class="bg-gray-50 px-2 py-1 rounded text-gray-600">Mini: <span class="font-bold">N1,400</span></div>
                     </div>
                 </div>
                 <div class="py-3">
-                    <div class="flex justify-between items-baseline mb-1">
-                        <h4 class="font-bold text-lg">Jollof Rice</h4>
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-bold text-lg text-gray-800">Jollof Rice</span>
                     </div>
-                    <div class="flex justify-between text-sm text-gray-600 mt-1">
-                        <span>Jumbo Pack</span>
-                        <span class="font-bold text-yum-orange">N2,400</span> 
+                    <div class="flex gap-4 text-sm mt-1">
+                        <div class="bg-orange-50 px-2 py-1 rounded text-yum-dark">Jumbo: <span class="font-bold">N2,400</span></div>
+                        <div class="bg-gray-50 px-2 py-1 rounded text-gray-600">Mini: <span class="font-bold">N1,200</span></div>
                     </div>
-                    <div class="flex justify-between text-sm text-gray-600 mt-1">
-                        <span>Mini Pack</span>
-                        <span class="font-bold text-yum-orange">N1,200</span> 
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="pasta" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-yum-yellow">
-            <div class="bg-yum-yellow/10 p-4 text-center">
-                <h3 class="font-brand text-3xl text-yum-orange category-header">Pasta</h3> 
-            </div>
-            <div class="p-4 divide-y divide-gray-100">
-                <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg">Jumbo Pack</span>
-                    <span class="font-bold text-yum-orange text-lg">N2,500</span> 
                 </div>
                 <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg">Mini Pack</span>
-                    <span class="font-bold text-yum-orange text-lg">N2,000</span> 
+                    <span class="font-bold text-lg text-gray-800">Yummy Special Basmati Rice</span>
+                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                </div>
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg text-gray-800">White Rice</span>
+                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
                 </div>
             </div>
         </section>
 
-        <section id="soups" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-green-500">
-            <div class="bg-green-50 p-4 text-center">
-                <h3 class="font-brand text-3xl text-green-600 category-header">Soups</h3>
+        <!-- 2. BEANS -->
+        <section id="beans" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yellow-800 section-card">
+            <div class="bg-yellow-50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-yellow-900 section-title">Beans</h3>
+                <i class="fas fa-seedling text-2xl text-yellow-900/30"></i>
             </div>
-            <div class="p-4 space-y-6">
-                
-                <div>
-                    <h4 class="font-bold text-xl text-yum-orange mb-2">Ogbono</h4> 
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
-                            <span>With Garri</span>
-                            <span class="font-bold">N2,100</span>
-                        </div>
-                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
-                            <span>With Semo</span>
-                            <span class="font-bold">N2,500</span>
-                        </div>
-                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
-                            <span>With Poundo</span>
-                            <span class="font-bold">N2,500</span>
-                        </div>
+            <div class="p-5 divide-y divide-gray-100">
+                <div class="py-4 flex justify-between items-center">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg text-gray-800">Trenches Style</span>
+                        <span class="text-sm text-gray-500">Station Beans + Garri (Milk & Sugar)</span>
                     </div>
+                    <span class="font-bold text-yum-orange text-xl">N4,500</span> 
                 </div>
-
-                <div>
-                    <h4 class="font-bold text-xl text-yum-orange mb-2">Egusi</h4> 
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
-                            <span>With Garri</span>
-                            <span class="font-bold">N1,900</span>
-                        </div>
-                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
-                            <span>With Semo</span>
-                            <span class="font-bold">N2,300</span>
-                        </div>
-                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
-                            <span>With Poundo</span>
-                            <span class="font-bold">N2,300</span>
-                        </div>
+                <div class="py-4 flex justify-between items-center">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg text-gray-800">Nepo Style</span>
+                        <span class="text-sm text-gray-500">Station Beans + Grilled Bread</span>
                     </div>
+                    <span class="font-bold text-yum-orange text-xl">N4,000</span> 
                 </div>
-
-                <div>
-                    <h4 class="font-bold text-xl text-yum-orange mb-2">Afang</h4> 
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
-                            <span>With Garri</span>
-                            <span class="font-bold">N1,900</span>
-                        </div>
-                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
-                            <span>With Semo</span>
-                            <span class="font-bold">N2,300</span>
-                        </div>
-                        <div class="flex justify-between border-b border-dashed border-gray-200 pb-1">
-                            <span>With Poundo</span>
-                            <span class="font-bold">N2,300</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <section id="grill" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-red-600">
-            <div class="bg-red-50 p-4 text-center">
-                <h3 class="font-brand text-3xl text-yum-orange category-header">Grill </h3> 
+        <!-- 3. PASTA -->
+        <section id="pasta" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-yellow section-card">
+            <div class="bg-yellow-50/50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-yum-orange section-title">Pasta</h3>
+                <i class="fas fa-utensils text-2xl text-yum-yellow"></i>
             </div>
-            <div class="p-4 space-y-6">
-                
-                <div>
-                    <h4 class="font-bold text-xl text-yum-orange mb-3">Shawarma <i class="fas fa-fire text-yum-orange text-sm"></i></h4> 
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between items-center">
-                            <span>Beef Shawarma</span>
-                            <span class="font-bold">N4,000</span>
-                        </div>
-                        
-                        <div class="flex justify-between items-start">
-                            <div class="flex flex-col">
-                                <span class="font-semibold">Station Shawarma</span>
-                                <span class="text-xs text-gray-500">Suya + Beef Shawarma</span>
-                            </div>
-                            <span class="font-bold">N4,500</span>
-                        </div>
+            <div class="p-5 divide-y divide-gray-100">
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg text-gray-800">Jumbo Pack</span>
+                    <span class="font-bold text-yum-orange text-xl">N2,500</span> 
+                </div>
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg text-gray-800">Mini Pack</span>
+                    <span class="font-bold text-yum-orange text-xl">N2,000</span> 
+                </div>
+            </div>
+        </section>
 
-                        <div class="flex justify-between items-start">
-                            <div class="flex flex-col">
-                                <span class="font-semibold text-yum-red">Yummy Special Shawarma</span>
-                                <span class="text-xs text-gray-500">Chicken + Beef + Suya</span>
-                            </div>
-                            <span class="font-bold">N5,000</span>
-                        </div>
+        <!-- 4. YAM & SAUCE -->
+        <section id="yam" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yellow-500 section-card">
+            <div class="bg-yellow-50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-yellow-700 section-title">Yam & Sauce</h3>
+                <i class="fas fa-carrot text-2xl text-yellow-700/30"></i>
+            </div>
+            <div class="p-5 divide-y divide-gray-100">
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg text-gray-800">Yamarita + Garden Egg Sauce</span>
+                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                </div>
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg text-gray-800">Yamarita + Egg Sauce</span>
+                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                </div>
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg text-gray-800">Boiled Yam + Garden Egg Sauce</span>
+                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                </div>
+                 <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg text-gray-800">Boiled Yam + Egg Sauce</span>
+                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SOUPS -->
+        <section id="soups" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-green-600 section-card">
+            <div class="bg-green-50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-green-700 section-title">Soups</h3>
+                <i class="fas fa-leaf text-2xl text-green-700/30"></i>
+            </div>
+            <div class="p-5 space-y-4">
+                
+                <div class="border-b border-gray-100 pb-2">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-xl text-yum-dark">Eforiro</span>
+                        <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span>
                     </div>
                 </div>
 
-                <hr class="border-gray-200">
-
-                <div>
-                    <h4 class="font-bold text-xl text-yum-orange mb-3">Burger <i class="fas fa-hamburger text-yum-orange text-sm"></i></h4> 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Standard Soup Box -->
+                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                        <h4 class="font-bold text-yum-orange mb-2 text-lg">Ogbono / Egusi / Afang</h4>
+                        <div class="space-y-1 text-sm text-gray-700">
+                            <div class="flex justify-between"><span>With Garri</span> <span class="font-bold">N1,900 - N2,100</span></div>
+                            <div class="flex justify-between"><span>With Semo</span> <span class="font-bold">N2,300 - N2,500</span></div>
+                            <div class="flex justify-between"><span>With Poundo</span> <span class="font-bold">N2,300 - N2,500</span></div>
+                        </div>
+                    </div>
                     
-                    <div class="space-y-4 text-sm">
-                        <div class="pl-2 border-l-2 border-gray-200">
-                            <h5 class="font-bold text-gray-700 mb-2 uppercase text-xs tracking-wider">Beef Burgers</h5>
-                            
-                            <div class="flex justify-between items-start mb-3">
-                                <div class="flex flex-col pr-2">
-                                    <span class="font-semibold">Station Beef Burger</span>
-                                    <span class="text-xs text-gray-500 leading-tight">3 Beef fillet + 2 Cheese + Suya (Ram/Beef) + Hotdogs</span>
-                                </div>
-                                <span class="font-bold whitespace-nowrap">N5,000</span>
-                            </div>
-
-                            <div class="flex justify-between items-start">
-                                <div class="flex flex-col pr-2">
-                                    <span class="font-semibold">Regular Beef</span>
-                                    <span class="text-xs text-gray-500 leading-tight">Double Beef fillet + 2 Cheese + Hotdog</span>
-                                </div>
-                                <span class="font-bold whitespace-nowrap">N4,500</span>
-                            </div>
+                    <!-- Protein Add-on -->
+                    <div class="bg-yum-dark text-white rounded-lg p-3 border border-gray-800">
+                        <h4 class="font-bold text-yum-yellow mb-2 text-lg">Add Protein</h4>
+                        <div class="space-y-1 text-sm">
+                            <div class="flex justify-between border-b border-gray-700 pb-1"><span>Chicken</span> <span>N3,000</span></div>
+                            <div class="flex justify-between border-b border-gray-700 pb-1"><span>Turkey</span> <span>N5,000</span></div>
+                            <div class="flex justify-between border-b border-gray-700 pb-1"><span>Fish</span> <span>N2,500</span></div>
+                            <div class="flex justify-between pt-1"><span>Beef/Goat</span> <span>N500</span></div>
                         </div>
-
-                        <div class="pl-2 border-l-2 border-gray-200">
-                            <h5 class="font-bold text-gray-700 mb-2 uppercase text-xs tracking-wider">Chicken Burgers</h5>
-                            
-                            <div class="flex justify-between items-start mb-3">
-                                <div class="flex flex-col pr-2">
-                                    <span class="font-semibold">Regular Chicken</span>
-                                    <span class="text-xs text-gray-500 leading-tight">Chicken fillet + 1 Cheese</span>
-                                </div>
-                                <span class="font-bold whitespace-nowrap">N4,500</span>
-                            </div>
-
-                            <div class="flex justify-between items-start">
-                                <div class="flex flex-col pr-2">
-                                    <span class="font-semibold">Station Chicken Burger</span>
-                                    <span class="text-xs text-gray-500 leading-tight">Chicken fillet + 2 Beef fillet + 2 Cheese + Hotdog</span>
-                                </div>
-                                <span class="font-bold whitespace-nowrap">N5,500</span>
-                            </div>
-                        </div>
-
-                        <div class="pl-2 border-l-2 border-yum-yellow bg-yellow-50/50 rounded-r py-1">
-                            <div class="flex justify-between items-start">
-                                <div class="flex flex-col pr-2">
-                                    <span class="font-bold text-yum-red"><i class="fas fa-star text-xs"></i> Yummy Special Burger</span>
-                                    <span class="text-xs text-gray-500 leading-tight">Chicken fillet + 2 Beef fillet + 3 Cheese + Suya (Ram/Beef) + Hotdogs</span>
-                                </div>
-                                <span class="font-bold whitespace-nowrap">N6,000</span>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <hr class="border-gray-200">
-
+        <!-- 6. BURGERS -->
+        <section id="burgers" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-red section-card">
+            <div class="bg-red-50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-yum-red section-title">Burgers</h3>
+                <i class="fas fa-hamburger text-2xl text-yum-red/30"></i>
+            </div>
+            <div class="p-5 space-y-6">
+                
+                <!-- Beef Category -->
                 <div>
-                    <h4 class="font-bold text-xl text-yum-orange mb-2">Chips <i class="fas fa-utensils text-yum-orange text-sm"></i></h4>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between">
-                            <span>Plain Chips</span>
-                            <span class="font-bold">N750</span>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Beef Collection</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div class="pr-2">
+                                <h5 class="font-bold text-gray-800 text-lg">Regular Beef</h5>
+                                <p class="text-xs text-gray-500 mt-1">Double Beef fillet + 2 Cheese + Hotdog</p>
+                            </div>
+                            <span class="font-bold text-yum-orange text-lg">N4,500</span>
                         </div>
-                        <div class="flex justify-between">
-                            <span>Chicken + Chips (ketchup)</span>
-                            <span class="font-bold">N4,000</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Turkey + Chips (dipping sauce)</span>
-                            <span class="font-bold">N5,000</span>
+                        <div class="flex justify-between items-start">
+                            <div class="pr-2">
+                                <h5 class="font-bold text-gray-800 text-lg">Station Beef Burger</h5>
+                                <p class="text-xs text-gray-500 mt-1">3 Beef fillet + 2 Cheese + Suya + Hotdogs</p>
+                            </div>
+                            <span class="font-bold text-yum-orange text-lg">N5,000</span>
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </section>
-
-        <section id="beans" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-yellow-800">
-            <div class="bg-yellow-50 p-4 text-center">
-                <h3 class="font-brand text-3xl text-yellow-900 category-header">Beans</h3>
-            </div>
-            <div class="p-4 divide-y divide-gray-100">
-                <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg">Beans & Garri (sugar, milk)</span>
-                    <span class="text-xs font-bold uppercase tracking-wide bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
-                </div>
-                <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg">Beans & Bread</span>
-                    <span class="text-xs font-bold uppercase tracking-wide bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="coming-soon" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-purple-500">
-            <div class="bg-purple-50 p-4 text-center">
-                <h3 class="font-brand text-3xl text-purple-600 category-header">Specials</h3>
-            </div>
-            <div class="p-4 divide-y divide-gray-100">
-                <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg">Yummy Subs</span>
-                    <span class="text-xs font-bold uppercase tracking-wide bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
-                </div>
-                <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg">Loaded Fries</span>
-                    <span class="text-xs font-bold uppercase tracking-wide bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
+                <!-- Chicken Category -->
+                <div class="border-t border-gray-100 pt-4">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Chicken Collection</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div class="pr-2">
+                                <h5 class="font-bold text-gray-800 text-lg">Regular Chicken</h5>
+                                <p class="text-xs text-gray-500 mt-1">Chicken fillet + 1 Cheese</p>
+                            </div>
+                            <span class="font-bold text-yum-orange text-lg">N4,500</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div class="pr-2">
+                                <h5 class="font-bold text-gray-800 text-lg">Station Chicken Burger</h5>
+                                <p class="text-xs text-gray-500 mt-1">Chicken fillet + 2 Beef fillet + 2 Cheese + Hotdog</p>
+                            </div>
+                            <span class="font-bold text-yum-orange text-lg">N5,500</span>
+                        </div>
+                        <!-- Ultimate Burger -->
+                        <div class="bg-yum-yellow/20 -mx-2 p-2 rounded-lg mt-2 flex justify-between items-start border border-yum-yellow/50">
+                            <div class="pr-2">
+                                <h5 class="font-bold text-yum-red text-lg"><i class="fas fa-star text-xs"></i> Yummy Special</h5>
+                                <p class="text-xs text-gray-600 mt-1 font-medium">Chicken fillet + 2 Beef fillet + 3 Cheese + Suya + Hotdogs</p>
+                            </div>
+                            <span class="font-bold text-yum-red text-lg">N6,000</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="protein" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-yum-dark">
-            <div class="bg-gray-100 p-4 text-center">
-                <h3 class="font-brand text-3xl text-yum-dark category-header">Protein</h3>
+        <!-- 7. SHAWARMA -->
+        <section id="shawarma" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-orange section-card">
+            <div class="bg-orange-50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-yum-orange section-title">Shawarma</h3>
+                <i class="fas fa-fire text-2xl text-yum-orange/30"></i>
             </div>
-            <div class="p-4 divide-y divide-gray-200">
-                 <div class="py-2 flex justify-between items-center">
-                    <span>Chicken</span>
-                    <span class="font-bold text-yum-orange">N3,000</span> 
+            <div class="p-5 divide-y divide-gray-100">
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg text-gray-800">Beef Shawarma</span>
+                    <span class="font-bold text-yum-orange text-xl">N4,500</span> 
                 </div>
-                 <div class="py-2 flex justify-between items-center">
-                    <span>Fish</span>
-                    <span class="font-bold text-yum-orange">N2,500</span> 
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-lg text-gray-800">Chicken Shawarma</span>
+                    <span class="font-bold text-yum-orange text-xl">N5,500</span> 
                 </div>
-                 <div class="py-2 flex justify-between items-center">
-                    <span>Turkey</span>
-                    <span class="font-bold text-yum-orange">N5,000</span> 
+                <div class="py-3 flex justify-between items-center">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg text-gray-800">Station Shawarma</span>
+                        <span class="text-xs text-gray-500">Suya + Beef</span>
+                    </div>
+                    <span class="font-bold text-yum-orange text-xl">N5,000</span> 
                 </div>
-                 <div class="py-2 flex justify-between items-center">
-                    <span>Goat Meat</span>
-                    <span class="font-bold text-yum-orange">N500</span> 
-                </div>
-                 <div class="py-2 flex justify-between items-center">
-                    <span>Beef</span>
-                    <span class="font-bold text-yum-orange">N500</span> 
+                <div class="py-3 flex justify-between items-center bg-orange-50/50 -mx-2 px-2 rounded">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg text-yum-red">Yummy Special</span>
+                        <span class="text-xs text-gray-600">Chicken + Beef + Suya</span>
+                    </div>
+                    <span class="font-bold text-yum-red text-xl">N6,000</span> 
                 </div>
             </div>
         </section>
 
-        <section id="drinks" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-blue-400">
-            <div class="bg-blue-50 p-4 text-center">
-                <h3 class="font-brand text-3xl text-blue-500 category-header">Drinks</h3>
+        <!-- 8. STATION SPECIALS (Subs, Fries, Chips) -->
+        <section id="specials" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-purple-600 section-card ring-2 ring-purple-100">
+            <div class="bg-purple-50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-purple-700 section-title">Station Specials</h3>
+                <i class="fas fa-star text-2xl text-purple-600"></i>
             </div>
-            <div class="p-4 grid grid-cols-1 gap-2 text-sm">
-                <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                    <span>Water</span>
-                    <span class="font-bold">N300</span>
+            
+            <div class="p-5 space-y-8">
+                
+                <!-- 9. Station Subs -->
+                <div>
+                    <h4 class="flex items-center gap-2 font-bold text-xl text-yum-dark mb-4">
+                        <span class="bg-purple-100 text-purple-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                        Station Subs
+                    </h4>
+                    <div class="grid gap-3">
+                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100 shadow-sm">
+                            <span class="font-semibold text-gray-700">Beef Sub</span>
+                            <span class="font-bold text-yum-orange">N4,500</span> 
+                        </div>
+                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100 shadow-sm">
+                            <span class="font-semibold text-gray-700">Chicken Sub</span>
+                            <span class="font-bold text-yum-orange">N5,500</span> 
+                        </div>
+                        <div class="flex justify-between items-center border p-3 rounded-lg border-purple-100 bg-purple-50 shadow-sm">
+                            <div class="flex flex-col">
+                                <span class="font-bold text-purple-700">Yummy Special Sub</span>
+                                <span class="text-xs text-gray-600">Chicken + Beef + Suya + Mozzarella</span>
+                            </div>
+                            <span class="font-bold text-purple-700">N6,000</span> 
+                        </div>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
-                    <span>Coke / Fanta / Pepsi</span>
-                    <span class="font-bold">N500</span>
+
+                <!-- 10. Loaded Fries -->
+                <div>
+                    <h4 class="flex items-center gap-2 font-bold text-xl text-yum-dark mb-4">
+                        <span class="bg-purple-100 text-purple-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                        Loaded Fries
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start border-b border-gray-100 pb-2">
+                            <div class="flex flex-col">
+                                <span class="font-bold text-gray-800">Regular Loaded</span>
+                                <span class="text-xs text-gray-500">Chicken + Hotdogs</span>
+                            </div>
+                            <span class="font-bold text-yum-orange text-lg">N7,000</span> 
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div class="flex flex-col">
+                                <span class="font-bold text-purple-700">Yumiloaded Special</span>
+                                <span class="text-xs text-gray-500">Beef + Chicken + Suya + Hotdog + Plantain</span>
+                            </div>
+                            <span class="font-bold text-purple-700 text-lg">N7,500</span> 
+                        </div>
+                    </div>
                 </div>
-                 <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                    <span>Predator</span>
-                    <span class="font-bold">N600</span>
+
+                <!-- 11. Chips -->
+                <div>
+                    <h4 class="flex items-center gap-2 font-bold text-xl text-yum-dark mb-4">
+                        <span class="bg-purple-100 text-purple-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
+                        Chips
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+                            <span class="font-semibold text-gray-700">Chips + Yummy Sauce</span>
+                            <span class="font-bold text-yum-orange">N2,000</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
+                            <span class="font-semibold text-gray-700">Chicken & Chips + Yumi Sauce</span>
+                            <span class="font-bold text-yum-orange">N5,000</span>
+                        </div>
+                    </div>
                 </div>
-                 <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
-                    <span>Malta Guinness / Fayrouz / Amstel</span>
-                    <span class="font-bold">N800</span>
+            </div>
+        </section>
+
+        <!-- 12. DRINKS & BEVERAGES -->
+        <section id="drinks" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-blue-400 section-card">
+            <div class="bg-blue-50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-blue-500 section-title">Drinks & Beverages</h3>
+                <i class="fas fa-glass-cheers text-2xl text-blue-400/30"></i>
+            </div>
+            <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                <div class="flex justify-between items-center p-2 border-b border-gray-50">
+                    <span class="text-gray-600">Water</span>
+                    <span class="font-bold text-yum-dark">N300</span>
                 </div>
-                <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                    <span>Viju Yoghurt</span>
-                    <span class="font-bold">N800</span>
+                <div class="flex justify-between items-center p-2 border-b border-gray-50">
+                    <span class="text-gray-600">Soda (Coke/Fanta)</span>
+                    <span class="font-bold text-yum-dark">N500</span>
                 </div>
-                <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
-                    <span>Hollandia Medium</span>
-                    <span class="font-bold">N900</span>
+                <div class="flex justify-between items-center p-2 border-b border-gray-50">
+                    <span class="text-gray-600">Predator</span>
+                    <span class="font-bold text-yum-dark">N600</span>
                 </div>
-                 <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                    <span>Chivita Active (Small)</span>
-                    <span class="font-bold">N1,300</span>
+                <div class="flex justify-between items-center p-2 border-b border-gray-50">
+                    <span class="text-gray-600">Malt / Fayrouz</span>
+                    <span class="font-bold text-yum-dark">N800</span>
                 </div>
-                <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
-                    <span>Exotic Big Size</span>
-                    <span class="font-bold">N1,800</span>
+                <div class="flex justify-between items-center p-2 border-b border-gray-50">
+                    <span class="text-gray-600">Viju Yoghurt</span>
+                    <span class="font-bold text-yum-dark">N800</span>
                 </div>
-                <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                    <span>Hollandia Big Size</span>
-                    <span class="font-bold">N1,900</span>
+                <div class="flex justify-between items-center p-2 border-b border-gray-50">
+                    <span class="text-gray-600">Hollandia Med</span>
+                    <span class="font-bold text-yum-dark">N900</span>
                 </div>
-                <div class="flex justify-between items-center p-2 bg-white rounded border border-gray-100">
-                    <span>Chivita Juice (Big)</span>
-                    <span class="font-bold">N2,100</span>
+                <div class="flex justify-between items-center p-2 border-b border-gray-50">
+                    <span class="text-gray-600">Chivita Active (Small)</span>
+                    <span class="font-bold text-yum-dark">N1,300</span>
                 </div>
-                 <div class="flex justify-between items-center p-2 bg-yellow-50 border border-yellow-100 rounded">
-                    <span class="font-bold text-yum-orange"><i class="fas fa-ice-cream"></i> Parfait</span> 
-                    <span class="font-bold text-lg">N3,000</span>
+                <div class="flex justify-between items-center p-2 border-b border-gray-50">
+                    <span class="text-gray-600">Hollandia Big</span>
+                    <span class="font-bold text-yum-dark">N1,900</span>
+                </div>
+                <!-- Parfait Highlight -->
+                <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg md:col-span-2 mt-2">
+                    <span class="font-bold text-yum-orange flex items-center gap-2"><i class="fas fa-ice-cream"></i> Parfait</span> 
+                    <span class="font-bold text-xl text-yum-dark">N3,000</span>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-yum-dark text-white mt-12 py-8 px-4 text-center">
-        <div class="mb-6">
-            <h2 class="font-brand text-3xl text-white mb-2">Yum Station</h2>
-            <p class="text-gray-400 text-sm">Crave and Enjoy</p>
+    <footer class="bg-yum-dark text-white mt-12 py-10 px-4 text-center">
+        <div class="mb-8">
+            <h2 class="font-brand text-4xl text-white mb-2">Yum Station</h2>
+            <p class="text-gray-400 text-sm tracking-widest uppercase">Crave and Enjoy</p>
         </div>
         
-        <div class="flex gap-6 justify-center items-center mb-8">
-             <a href="tel:08061781845" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-yum-yellow transition shadow-lg" aria-label="Call Us">
+        <div class="flex gap-6 justify-center items-center mb-10">
+             <a href="tel:08061781845" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-yum-yellow transition shadow-lg transform hover:-translate-y-1" aria-label="Call Us">
                 <i class="fas fa-phone-alt text-xl"></i>
             </a>
-            <a href="https://instagram.com/yumstationfoods" target="_blank" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-pink-500 transition shadow-lg" aria-label="Instagram">
+            <a href="https://instagram.com/yumstationfoods" target="_blank" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-pink-500 transition shadow-lg transform hover:-translate-y-1" aria-label="Instagram">
                 <i class="fab fa-instagram text-2xl"></i>
             </a>
-            <a href="https://wa.me/2348061781845" target="_blank" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-green-500 transition shadow-lg" aria-label="WhatsApp">
+            <a href="https://wa.me/2348061781845" target="_blank" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-green-500 transition shadow-lg transform hover:-translate-y-1" aria-label="WhatsApp">
                 <i class="fab fa-whatsapp text-2xl"></i>
             </a>
         </div>
 
-        <p class="text-xs text-gray-500 mb-2">&copy; 2025 Yum Station. All rights reserved.</p>
-        <p class="text-xs text-gray-600">
-            Built by <a href="https://tacdigitals.com" target="_blank" class="text-gray-500 hover:text-yum-yellow transition decoration-dotted underline-offset-2">TacDigitals</a>
-        </p>
+        <div class="border-t border-gray-800 pt-6">
+            <p class="text-xs text-gray-500 mb-2">&copy; 2025 Yum Station. All rights reserved.</p>
+            <p class="text-xs text-gray-600">
+                Built by <a href="https://tacdigitals.com" target="_blank" class="text-gray-500 hover:text-yum-yellow transition decoration-dotted underline-offset-2">TacDigitals</a>
+            </p>
+        </div>
     </footer>
 
-    <a href="https://wa.me/2348061781845" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-green-600 transition animate-bounce z-50">
+    <a href="https://wa.me/2348061781845" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-green-600 transition animate-bounce z-50 hover:scale-110">
         <i class="fab fa-whatsapp"></i>
     </a>
 
