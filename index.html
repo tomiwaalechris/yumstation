@@ -239,7 +239,7 @@
                 <div class="py-3 flex justify-between items-center opacity-70">
                     <div class="flex flex-col">
                         <span class="font-bold text-gray-800">Yamarita + Garden Egg Sauce</span>
-                        <!-- <span class="text-xs text-gray-500">Ask for price</span> -->
+                        <span class="text-xs text-gray-500">Ask for price</span>
                     </div>
                     <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                 </div>
@@ -247,7 +247,7 @@
                 <div class="py-3 flex justify-between items-center opacity-70">
                     <div class="flex flex-col">
                         <span class="font-bold text-gray-800">Yamarita + Egg Sauce</span>
-                        <!-- <span class="text-xs text-gray-500">Ask for price</span> -->
+                        <span class="text-xs text-gray-500">Ask for price</span>
                     </div>
                     <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                 </div>
@@ -255,7 +255,7 @@
                 <div class="py-3 flex justify-between items-center opacity-70">
                     <div class="flex flex-col">
                         <span class="font-bold text-gray-800">Boiled Yam + Garden Egg Sauce</span>
-                        <!-- <span class="text-xs text-gray-500">Ask for price</span> -->
+                        <span class="text-xs text-gray-500">Ask for price</span>
                     </div>
                     <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                 </div>
@@ -263,7 +263,7 @@
                 <div class="py-3 flex justify-between items-center opacity-70">
                     <div class="flex flex-col">
                         <span class="font-bold text-gray-800">Boiled Yam + Egg Sauce</span>
-                        <!-- <span class="text-xs text-gray-500">Ask for price</span> -->
+                        <span class="text-xs text-gray-500">Ask for price</span>
                     </div>
                     <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
                 </div>
@@ -662,34 +662,83 @@
 
     <!-- Cart Modal -->
     <div id="cart-modal" class="fixed inset-0 bg-black/50 z-[60] hidden flex items-end sm:items-center justify-center backdrop-blur-sm transition-opacity">
-        <div class="bg-white w-full sm:w-96 sm:rounded-2xl rounded-t-3xl shadow-2xl overflow-hidden max-h-[85vh] flex flex-col">
+        <div class="bg-white w-full sm:w-96 sm:rounded-2xl rounded-t-3xl shadow-2xl overflow-hidden max-h-[85vh] flex flex-col h-[500px] sm:h-auto">
             <!-- Header -->
-            <div class="bg-yum-orange p-4 flex justify-between items-center text-white">
-                <h3 class="font-brand text-2xl">Your Order</h3>
+            <div class="bg-yum-orange p-4 flex justify-between items-center text-white shrink-0">
+                <h3 class="font-brand text-2xl" id="cart-modal-title">Your Order</h3>
                 <button onclick="toggleCart()" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             
-            <!-- Cart Items -->
-            <div id="cart-items-container" class="p-4 overflow-y-auto flex-1 space-y-3">
-                <!-- Items injected here by JS -->
-                <div class="text-center py-10 text-gray-400">
-                    <i class="fas fa-shopping-basket text-4xl mb-3 opacity-30"></i>
-                    <p>Your cart is empty.</p>
+            <!-- VIEW 1: Cart Items -->
+            <div id="cart-view" class="flex flex-col flex-1 overflow-hidden">
+                <div id="cart-items-container" class="p-4 overflow-y-auto flex-1 space-y-3">
+                    <!-- Items injected here by JS -->
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="p-4 bg-gray-50 border-t border-gray-100 shrink-0">
+                    <div class="flex justify-between items-end mb-4">
+                        <span class="text-gray-600 font-medium">Total Amount</span>
+                        <span class="text-2xl font-bold text-yum-dark" id="modal-total">N0</span>
+                    </div>
+                    <button onclick="goToCheckout()" class="w-full bg-yum-orange hover:bg-orange-600 text-white font-bold py-3 rounded-xl shadow-lg transition flex justify-center items-center gap-2">
+                        Proceed to Checkout <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
 
-            <!-- Footer Actions -->
-            <div class="p-4 bg-gray-50 border-t border-gray-100">
-                <div class="flex justify-between items-end mb-4">
-                    <span class="text-gray-600 font-medium">Total Amount</span>
-                    <span class="text-2xl font-bold text-yum-dark" id="modal-total">N0</span>
+            <!-- VIEW 2: Checkout Form -->
+            <div id="checkout-view" class="hidden flex flex-col flex-1 overflow-hidden bg-gray-50">
+                <div class="p-5 flex-1 overflow-y-auto space-y-5">
+                    
+                    <!-- Order Type -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Delivery Method</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="orderType" value="delivery" class="peer sr-only" checked onchange="toggleDeliveryFields()">
+                                <div class="peer-checked:bg-yum-orange peer-checked:text-white peer-checked:border-yum-orange bg-white text-gray-600 border border-gray-200 rounded-xl py-3 px-2 text-center transition shadow-sm">
+                                    <i class="fas fa-motorcycle mb-1 block text-lg"></i>
+                                    <span class="text-sm font-bold">Delivery</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="orderType" value="pickup" class="peer sr-only" onchange="toggleDeliveryFields()">
+                                <div class="peer-checked:bg-yum-orange peer-checked:text-white peer-checked:border-yum-orange bg-white text-gray-600 border border-gray-200 rounded-xl py-3 px-2 text-center transition shadow-sm">
+                                    <i class="fas fa-walking mb-1 block text-lg"></i>
+                                    <span class="text-sm font-bold">Pickup</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Phone Number <span class="text-red-500">*</span></label>
+                        <input type="tel" id="customer-phone" placeholder="080..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yum-orange focus:border-transparent bg-white shadow-sm">
+                    </div>
+
+                    <!-- Delivery Info -->
+                    <div id="delivery-info-section">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Delivery Address <span class="text-red-500">*</span></label>
+                        <textarea id="delivery-address" rows="3" placeholder="Street name, House number, Landmark..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yum-orange focus:border-transparent bg-white shadow-sm resize-none"></textarea>
+                    </div>
+
                 </div>
-                <button onclick="checkoutWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl shadow-lg transition flex justify-center items-center gap-2">
-                    <i class="fab fa-whatsapp text-xl"></i> Checkout on WhatsApp
-                </button>
+
+                <!-- Checkout Actions -->
+                <div class="p-4 bg-white border-t border-gray-100 shrink-0 flex flex-col gap-3">
+                    <button onclick="finalizeOrder()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl shadow-lg transition flex justify-center items-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i> Send Order on WhatsApp
+                    </button>
+                    <button onclick="backToCart()" class="w-full text-gray-500 font-medium text-sm hover:text-gray-800 transition">
+                        Back to Cart
+                    </button>
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -789,12 +838,57 @@
 
         function toggleCart() {
             const modal = document.getElementById('cart-modal');
-            modal.classList.toggle('hidden');
+            const isHidden = modal.classList.contains('hidden');
+            
+            if (isHidden) {
+                // When opening, always show cart view first
+                document.getElementById('cart-view').classList.remove('hidden');
+                document.getElementById('checkout-view').classList.add('hidden');
+                document.getElementById('cart-modal-title').textContent = 'Your Order';
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
         }
 
-        function checkoutWhatsApp() {
+        function goToCheckout() {
             if (cart.length === 0) {
                 showToast("Your cart is empty!");
+                return;
+            }
+            document.getElementById('cart-view').classList.add('hidden');
+            document.getElementById('checkout-view').classList.remove('hidden');
+            document.getElementById('cart-modal-title').textContent = 'Checkout';
+        }
+
+        function backToCart() {
+            document.getElementById('checkout-view').classList.add('hidden');
+            document.getElementById('cart-view').classList.remove('hidden');
+            document.getElementById('cart-modal-title').textContent = 'Your Order';
+        }
+
+        function toggleDeliveryFields() {
+            const orderType = document.querySelector('input[name="orderType"]:checked').value;
+            const deliverySection = document.getElementById('delivery-info-section');
+            if (orderType === 'delivery') {
+                deliverySection.classList.remove('hidden');
+            } else {
+                deliverySection.classList.add('hidden');
+            }
+        }
+
+        function finalizeOrder() {
+            const orderType = document.querySelector('input[name="orderType"]:checked').value;
+            const phone = document.getElementById('customer-phone').value.trim();
+            const address = document.getElementById('delivery-address').value.trim();
+
+            if (!phone) {
+                alert("Please enter your phone number to proceed.");
+                return;
+            }
+
+            if (orderType === 'delivery' && !address) {
+                alert("Please enter your delivery address.");
                 return;
             }
 
@@ -809,6 +903,14 @@
 
             message += `\n*TOTAL: N${total.toLocaleString()}*`;
             
+            message += `\n\n----------------`;
+            message += `\n*Order Type:* ${orderType.toUpperCase()}`;
+            message += `\n*Phone:* ${phone}`;
+            
+            if (orderType === 'delivery') {
+                message += `\n*Address:* ${address}`;
+            }
+
             // Encode and open
             const url = `https://wa.me/2348061781845?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
