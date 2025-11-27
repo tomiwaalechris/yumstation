@@ -38,60 +38,66 @@
     <style>
         body {
             background-image: 
-                linear-gradient(135deg, rgba(255, 245, 204, 0.96) 0%, rgba(255, 230, 128, 0.96) 100%),
+                linear-gradient(135deg, rgba(255, 245, 204, 0.98) 0%, rgba(255, 230, 128, 0.98) 100%),
                 url('background.jpg'); 
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-        /* Consistent Section Headers */
         .section-title {
             font-family: 'Lobster', cursive;
             letter-spacing: 0.05em;
         }
-        .section-card {
-            transition: transform 0.2s;
-        }
-        /* Custom Scrollbar for horizontal nav */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
         .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Tap highlight removal for mobile */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Custom Button Hover */
+        .btn-add:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
-<body class="font-body text-yum-dark antialiased pb-24">
+<body class="font-body text-yum-dark antialiased pb-32">
 
     <!-- Navigation -->
-    <nav class="bg-yum-orange text-white shadow-lg sticky top-0 z-50">
+    <nav class="bg-yum-orange text-white shadow-lg sticky top-0 z-40">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <div class="w-10 h-10 bg-white rounded-full border-2 border-yum-yellow overflow-hidden flex items-center justify-center shadow-sm">
-                    <img src="yumstation logo.jpg" alt="YS" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="hidden w-full h-full items-center justify-center text-yum-red font-bold text-xl">
+                    <div class="w-full h-full items-center justify-center text-yum-red font-bold text-xl flex">
                         <i class="fas fa-utensils"></i>
                     </div>
                 </div>
                 <h1 class="font-brand text-2xl tracking-wide text-white drop-shadow-md">Yum Station</h1>
             </div>
-            <a href="https://wa.me/2348061781845" class="bg-white text-green-600 px-5 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-md hover:bg-gray-100 transition transform hover:scale-105">
-                <i class="fab fa-whatsapp text-xl"></i> Order
-            </a>
+            <button onclick="toggleCart()" class="bg-white text-yum-red px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-md hover:bg-gray-100 transition relative">
+                <i class="fas fa-shopping-cart"></i> 
+                <span class="hidden sm:inline">Cart</span>
+                <span id="nav-cart-count" class="absolute -top-1 -right-1 bg-yum-dark text-white text-xs w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+            </button>
         </div>
         <!-- Scrollable Quick Links -->
-        <div class="bg-yum-dark text-white py-2 overflow-x-auto no-scrollbar">
-            <div class="container mx-auto px-4 flex gap-4 whitespace-nowrap text-sm font-medium">
+        <div class="bg-yum-dark text-white py-2 overflow-x-auto no-scrollbar shadow-inner">
+            <div class="container mx-auto px-4 flex gap-6 whitespace-nowrap text-sm font-medium">
                 <a href="#rice" class="hover:text-yum-yellow transition">Rice</a>
                 <a href="#beans" class="hover:text-yum-yellow transition">Beans</a>
                 <a href="#pasta" class="hover:text-yum-yellow transition">Pasta</a>
                 <a href="#yam" class="hover:text-yum-yellow transition">Yam</a>
+                <a href="#protein" class="text-yum-yellow hover:text-white transition">Proteins</a>
+                <a href="#swallow" class="text-yum-yellow hover:text-white transition">Swallows</a>
                 <a href="#soups" class="hover:text-yum-yellow transition">Soups</a>
                 <a href="#burgers" class="hover:text-yum-yellow transition">Burgers</a>
                 <a href="#shawarma" class="hover:text-yum-yellow transition">Shawarma</a>
-                <a href="#specials" class="text-yum-yellow hover:text-white transition">Specials</a>
+                <a href="#specials" class="hover:text-yum-yellow transition">Specials</a>
                 <a href="#drinks" class="hover:text-yum-yellow transition">Drinks</a>
             </div>
         </div>
@@ -100,158 +106,268 @@
     <!-- Hero -->
     <header class="text-center py-8 px-4">
         <h2 class="text-4xl font-brand text-yum-orange mb-2 drop-shadow-sm">Crave and Enjoy</h2> 
-        <p class="text-gray-700 max-w-md mx-auto font-medium">Explore our delicious menu. Click the Whatsapp button to place your order!</p>
+        <p class="text-gray-700 max-w-md mx-auto font-medium text-sm">Tap "Add" to build your order, then send it to us on WhatsApp!</p>
     </header>
 
     <main class="container mx-auto px-4 max-w-3xl space-y-8">
 
         <!-- 1. RICE -->
-        <section id="rice" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-orange section-card">
+        <section id="rice" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-orange">
             <div class="bg-orange-50 p-4 flex items-center justify-between">
                 <h3 class="text-3xl text-yum-orange section-title">Rice</h3>
                 <i class="fas fa-bowl-rice text-2xl text-yum-orange/30"></i>
             </div>
-            <div class="p-5 divide-y divide-gray-100">
+            <div class="p-4 divide-y divide-gray-100">
+                <!-- Coconut Rice -->
                 <div class="py-3">
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="font-bold text-lg text-gray-800">Coconut Rice</span>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-bold text-gray-800">Coconut Rice</span>
                     </div>
-                    <div class="flex gap-4 text-sm mt-1">
-                        <div class="bg-orange-50 px-2 py-1 rounded text-yum-dark">Jumbo: <span class="font-bold">N2,400</span></div>
-                        <div class="bg-gray-50 px-2 py-1 rounded text-gray-600">Mini: <span class="font-bold">N1,200</span></div>
+                    <div class="flex gap-3 text-sm">
+                        <button onclick="addToCart('Coconut Rice (Jumbo)', 2400)" class="btn-add flex-1 flex justify-between items-center bg-orange-50 hover:bg-orange-100 border border-orange-100 px-3 py-2 rounded-lg transition">
+                            <span>Jumbo</span>
+                            <span class="font-bold text-yum-red">N2,400 <i class="fas fa-plus-circle ml-1"></i></span>
+                        </button>
+                        <button onclick="addToCart('Coconut Rice (Mini)', 1200)" class="btn-add flex-1 flex justify-between items-center bg-gray-50 hover:bg-gray-100 border border-gray-100 px-3 py-2 rounded-lg transition">
+                            <span>Mini</span>
+                            <span class="font-bold text-gray-600">N1,200 <i class="fas fa-plus-circle ml-1"></i></span>
+                        </button>
                     </div>
                 </div>
+                <!-- Fried Rice -->
                 <div class="py-3">
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="font-bold text-lg text-gray-800">Fried Rice</span>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-bold text-gray-800">Fried Rice</span>
                     </div>
-                    <div class="flex gap-4 text-sm mt-1">
-                        <div class="bg-orange-50 px-2 py-1 rounded text-yum-dark">Jumbo: <span class="font-bold">N2,800</span></div>
-                        <div class="bg-gray-50 px-2 py-1 rounded text-gray-600">Mini: <span class="font-bold">N1,400</span></div>
+                    <div class="flex gap-3 text-sm">
+                        <button onclick="addToCart('Fried Rice (Jumbo)', 2800)" class="btn-add flex-1 flex justify-between items-center bg-orange-50 hover:bg-orange-100 border border-orange-100 px-3 py-2 rounded-lg transition">
+                            <span>Jumbo</span>
+                            <span class="font-bold text-yum-red">N2,800 <i class="fas fa-plus-circle ml-1"></i></span>
+                        </button>
+                        <button onclick="addToCart('Fried Rice (Mini)', 1400)" class="btn-add flex-1 flex justify-between items-center bg-gray-50 hover:bg-gray-100 border border-gray-100 px-3 py-2 rounded-lg transition">
+                            <span>Mini</span>
+                            <span class="font-bold text-gray-600">N1,400 <i class="fas fa-plus-circle ml-1"></i></span>
+                        </button>
                     </div>
                 </div>
+                <!-- Jollof Rice -->
                 <div class="py-3">
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="font-bold text-lg text-gray-800">Jollof Rice</span>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-bold text-gray-800">Jollof Rice</span>
                     </div>
-                    <div class="flex gap-4 text-sm mt-1">
-                        <div class="bg-orange-50 px-2 py-1 rounded text-yum-dark">Jumbo: <span class="font-bold">N2,400</span></div>
-                        <div class="bg-gray-50 px-2 py-1 rounded text-gray-600">Mini: <span class="font-bold">N1,200</span></div>
+                    <div class="flex gap-3 text-sm">
+                        <button onclick="addToCart('Jollof Rice (Jumbo)', 2400)" class="btn-add flex-1 flex justify-between items-center bg-orange-50 hover:bg-orange-100 border border-orange-100 px-3 py-2 rounded-lg transition">
+                            <span>Jumbo</span>
+                            <span class="font-bold text-yum-red">N2,400 <i class="fas fa-plus-circle ml-1"></i></span>
+                        </button>
+                        <button onclick="addToCart('Jollof Rice (Mini)', 1200)" class="btn-add flex-1 flex justify-between items-center bg-gray-50 hover:bg-gray-100 border border-gray-100 px-3 py-2 rounded-lg transition">
+                            <span>Mini</span>
+                            <span class="font-bold text-gray-600">N1,200 <i class="fas fa-plus-circle ml-1"></i></span>
+                        </button>
                     </div>
                 </div>
-                <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">Yummy Special Basmati Rice</span>
-                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                <!-- Coming Soon Items -->
+                <div class="py-3 flex justify-between items-center opacity-70">
+                    <span class="font-bold text-gray-800">Yummy Special Basmati</span>
+                    <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span> 
                 </div>
-                <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">White Rice</span>
-                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                <div class="py-3 flex justify-between items-center opacity-70">
+                    <span class="font-bold text-gray-800">White Rice</span>
+                    <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span> 
                 </div>
             </div>
         </section>
 
         <!-- 2. BEANS -->
-        <section id="beans" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yellow-800 section-card">
+        <section id="beans" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yellow-800">
             <div class="bg-yellow-50 p-4 flex items-center justify-between">
                 <h3 class="text-3xl text-yellow-900 section-title">Beans</h3>
                 <i class="fas fa-seedling text-2xl text-yellow-900/30"></i>
             </div>
-            <div class="p-5 divide-y divide-gray-100">
-                <div class="py-4 flex justify-between items-center">
+            <div class="p-4 divide-y divide-gray-100">
+                <div class="py-3 flex justify-between items-center">
                     <div class="flex flex-col">
-                        <span class="font-bold text-lg text-gray-800">Trenches Style</span>
-                        <span class="text-sm text-gray-500">Station Beans + Garri (Milk & Sugar)</span>
+                        <span class="font-bold text-gray-800">Trenches Style</span>
+                        <span class="text-xs text-gray-500">Beans + Garri (Milk & Sugar)</span>
                     </div>
-                    <span class="font-bold text-yum-orange text-xl">N4,500</span> 
+                    <button onclick="addToCart('Beans Trenches Style', 4500)" class="btn-add bg-yellow-50 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold border border-yellow-100">
+                        N4,500 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
-                <div class="py-4 flex justify-between items-center">
+                <div class="py-3 flex justify-between items-center">
                     <div class="flex flex-col">
-                        <span class="font-bold text-lg text-gray-800">Nepo Style</span>
-                        <span class="text-sm text-gray-500">Station Beans + Grilled Bread</span>
+                        <span class="font-bold text-gray-800">Nepo Style</span>
+                        <span class="text-xs text-gray-500">Beans + Grilled Bread</span>
                     </div>
-                    <span class="font-bold text-yum-orange text-xl">N4,000</span> 
+                    <button onclick="addToCart('Beans Nepo Style', 4000)" class="btn-add bg-yellow-50 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold border border-yellow-100">
+                        N4,000 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
             </div>
         </section>
 
         <!-- 3. PASTA -->
-        <section id="pasta" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-yellow section-card">
+        <section id="pasta" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-yellow">
             <div class="bg-yellow-50/50 p-4 flex items-center justify-between">
                 <h3 class="text-3xl text-yum-orange section-title">Pasta</h3>
                 <i class="fas fa-utensils text-2xl text-yum-yellow"></i>
             </div>
-            <div class="p-5 divide-y divide-gray-100">
+            <div class="p-4 divide-y divide-gray-100">
                 <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">Jumbo Pack</span>
-                    <span class="font-bold text-yum-orange text-xl">N2,500</span> 
+                    <span class="font-bold text-gray-800">Pasta Jumbo Pack</span>
+                    <button onclick="addToCart('Pasta Jumbo Pack', 2500)" class="btn-add bg-orange-50 text-yum-orange px-3 py-1 rounded-full text-sm font-bold border border-orange-100">
+                        N2,500 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
                 <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">Mini Pack</span>
-                    <span class="font-bold text-yum-orange text-xl">N2,000</span> 
+                    <span class="font-bold text-gray-800">Pasta Mini Pack</span>
+                    <button onclick="addToCart('Pasta Mini Pack', 2000)" class="btn-add bg-orange-50 text-yum-orange px-3 py-1 rounded-full text-sm font-bold border border-orange-100">
+                        N2,000 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
             </div>
         </section>
 
         <!-- 4. YAM & SAUCE -->
-        <section id="yam" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yellow-500 section-card">
+        <section id="yam" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yellow-500">
             <div class="bg-yellow-50 p-4 flex items-center justify-between">
                 <h3 class="text-3xl text-yellow-700 section-title">Yam & Sauce</h3>
                 <i class="fas fa-carrot text-2xl text-yellow-700/30"></i>
             </div>
-            <div class="p-5 divide-y divide-gray-100">
+            <div class="p-4 text-center py-6 text-gray-500">
+                <i class="fas fa-clock mb-2 text-2xl"></i>
+                <p>Items in this section are Coming Soon!</p>
+            </div>
+        </section>
+
+        <!-- PROTEIN SECTION -->
+        <section id="protein" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-red-800">
+            <div class="bg-red-50 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-red-900 section-title">Proteins</h3>
+                <i class="fas fa-drumstick-bite text-2xl text-red-800/30"></i>
+            </div>
+            <div class="p-4 divide-y divide-gray-100">
                 <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">Yamarita + Garden Egg Sauce</span>
-                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                    <span class="font-bold text-gray-800">Turkey</span>
+                    <button onclick="addToCart('Turkey', 5000)" class="btn-add bg-red-50 text-red-700 px-3 py-1 rounded-full text-sm font-bold border border-red-100">
+                        N5,000 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
                 <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">Yamarita + Egg Sauce</span>
-                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                    <span class="font-bold text-gray-800">Chicken</span>
+                    <button onclick="addToCart('Chicken', 3000)" class="btn-add bg-red-50 text-red-700 px-3 py-1 rounded-full text-sm font-bold border border-red-100">
+                        N3,000 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
                 <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">Boiled Yam + Garden Egg Sauce</span>
-                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                    <span class="font-bold text-gray-800">Fish</span>
+                    <button onclick="addToCart('Fish', 2500)" class="btn-add bg-red-50 text-red-700 px-3 py-1 rounded-full text-sm font-bold border border-red-100">
+                        N2,500 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
-                 <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">Boiled Yam + Egg Sauce</span>
-                    <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span> 
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-gray-800">Beef / Goat Meat</span>
+                    <button onclick="addToCart('Beef/Goat Meat', 500)" class="btn-add bg-red-50 text-red-700 px-3 py-1 rounded-full text-sm font-bold border border-red-100">
+                        N500 <i class="fas fa-plus ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SWALLOW SECTION -->
+        <section id="swallow" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-stone-400">
+            <div class="bg-stone-100 p-4 flex items-center justify-between">
+                <h3 class="text-3xl text-stone-700 section-title">Swallow</h3>
+                <i class="fas fa-cookie text-2xl text-stone-600/30"></i>
+            </div>
+            <div class="p-4 divide-y divide-gray-100">
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-gray-800">Poundo Yam</span>
+                    <button onclick="addToCart('Poundo Yam', 300)" class="btn-add bg-stone-50 text-stone-600 px-3 py-1 rounded-full text-sm font-bold border border-stone-200">
+                        N300 <i class="fas fa-plus ml-1"></i>
+                    </button>
+                </div>
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-gray-800">Semovita</span>
+                    <button onclick="addToCart('Semovita', 300)" class="btn-add bg-stone-50 text-stone-600 px-3 py-1 rounded-full text-sm font-bold border border-stone-200">
+                        N300 <i class="fas fa-plus ml-1"></i>
+                    </button>
+                </div>
+                <div class="py-3 flex justify-between items-center">
+                    <span class="font-bold text-gray-800">Garri (Eba)</span>
+                    <button onclick="addToCart('Garri (Eba)', 300)" class="btn-add bg-stone-50 text-stone-600 px-3 py-1 rounded-full text-sm font-bold border border-stone-200">
+                        N300 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
             </div>
         </section>
 
         <!-- 5. SOUPS -->
-        <section id="soups" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-green-600 section-card">
+        <section id="soups" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-green-600">
             <div class="bg-green-50 p-4 flex items-center justify-between">
                 <h3 class="text-3xl text-green-700 section-title">Soups</h3>
                 <i class="fas fa-leaf text-2xl text-green-700/30"></i>
             </div>
-            <div class="p-5 space-y-4">
-                
-                <div class="border-b border-gray-100 pb-2">
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold text-xl text-yum-dark">Eforiro</span>
-                        <span class="text-sm font-semibold text-gray-400 italic bg-gray-100 px-2 py-1 rounded">Ask for price</span>
+            <div class="p-4 space-y-6">
+                <!-- Eforiro -->
+                <div class="flex justify-between items-center pb-2 opacity-70">
+                    <span class="font-bold text-xl text-yum-dark">Eforiro</span>
+                    <span class="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">Coming Soon</span>
+                </div>
+
+                <!-- Ogbono -->
+                <div class="bg-gray-50 rounded-lg p-3 border border-gray-100 shadow-sm">
+                    <h4 class="font-bold text-yum-orange mb-3 text-xl border-b border-gray-200 pb-1">Ogbono</h4>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="flex justify-between items-center">
+                            <span>Ogbono + Garri</span> 
+                            <button onclick="addToCart('Ogbono + Garri', 2100)" class="btn-add bg-white text-green-600 px-3 py-1 rounded-full text-sm font-bold border border-green-100 shadow-sm">N2,100 <i class="fas fa-plus ml-1"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Ogbono + Semo</span> 
+                            <button onclick="addToCart('Ogbono + Semo', 2500)" class="btn-add bg-white text-green-600 px-3 py-1 rounded-full text-sm font-bold border border-green-100 shadow-sm">N2,500 <i class="fas fa-plus ml-1"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Ogbono + Poundo</span> 
+                            <button onclick="addToCart('Ogbono + Poundo', 2500)" class="btn-add bg-white text-green-600 px-3 py-1 rounded-full text-sm font-bold border border-green-100 shadow-sm">N2,500 <i class="fas fa-plus ml-1"></i></button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Standard Soup Box -->
-                    <div class="bg-gray-50 rounded-lg p-3 border border-gray-100">
-                        <h4 class="font-bold text-yum-orange mb-2 text-lg">Ogbono / Egusi / Afang</h4>
-                        <div class="space-y-1 text-sm text-gray-700">
-                            <div class="flex justify-between"><span>With Garri</span> <span class="font-bold">N1,900 - N2,100</span></div>
-                            <div class="flex justify-between"><span>With Semo</span> <span class="font-bold">N2,300 - N2,500</span></div>
-                            <div class="flex justify-between"><span>With Poundo</span> <span class="font-bold">N2,300 - N2,500</span></div>
+                <!-- Egusi -->
+                <div class="bg-gray-50 rounded-lg p-3 border border-gray-100 shadow-sm">
+                    <h4 class="font-bold text-yum-orange mb-3 text-xl border-b border-gray-200 pb-1">Egusi</h4>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="flex justify-between items-center">
+                            <span>Egusi + Garri</span> 
+                            <button onclick="addToCart('Egusi + Garri', 1900)" class="btn-add bg-white text-green-600 px-3 py-1 rounded-full text-sm font-bold border border-green-100 shadow-sm">N1,900 <i class="fas fa-plus ml-1"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Egusi + Semo</span> 
+                            <button onclick="addToCart('Egusi + Semo', 2300)" class="btn-add bg-white text-green-600 px-3 py-1 rounded-full text-sm font-bold border border-green-100 shadow-sm">N2,300 <i class="fas fa-plus ml-1"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Egusi + Poundo</span> 
+                            <button onclick="addToCart('Egusi + Poundo', 2300)" class="btn-add bg-white text-green-600 px-3 py-1 rounded-full text-sm font-bold border border-green-100 shadow-sm">N2,300 <i class="fas fa-plus ml-1"></i></button>
                         </div>
                     </div>
-                    
-                    <!-- Protein Add-on -->
-                    <div class="bg-yum-dark text-white rounded-lg p-3 border border-gray-800">
-                        <h4 class="font-bold text-yum-yellow mb-2 text-lg">Add Protein</h4>
-                        <div class="space-y-1 text-sm">
-                            <div class="flex justify-between border-b border-gray-700 pb-1"><span>Chicken</span> <span>N3,000</span></div>
-                            <div class="flex justify-between border-b border-gray-700 pb-1"><span>Turkey</span> <span>N5,000</span></div>
-                            <div class="flex justify-between border-b border-gray-700 pb-1"><span>Fish</span> <span>N2,500</span></div>
-                            <div class="flex justify-between pt-1"><span>Beef/Goat</span> <span>N500</span></div>
+                </div>
+
+                <!-- Afang -->
+                <div class="bg-gray-50 rounded-lg p-3 border border-gray-100 shadow-sm">
+                    <h4 class="font-bold text-yum-orange mb-3 text-xl border-b border-gray-200 pb-1">Afang</h4>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="flex justify-between items-center">
+                            <span>Afang + Garri</span> 
+                            <button onclick="addToCart('Afang + Garri', 1900)" class="btn-add bg-white text-green-600 px-3 py-1 rounded-full text-sm font-bold border border-green-100 shadow-sm">N1,900 <i class="fas fa-plus ml-1"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Afang + Semo</span> 
+                            <button onclick="addToCart('Afang + Semo', 2300)" class="btn-add bg-white text-green-600 px-3 py-1 rounded-full text-sm font-bold border border-green-100 shadow-sm">N2,300 <i class="fas fa-plus ml-1"></i></button>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Afang + Poundo</span> 
+                            <button onclick="addToCart('Afang + Poundo', 2300)" class="btn-add bg-white text-green-600 px-3 py-1 rounded-full text-sm font-bold border border-green-100 shadow-sm">N2,300 <i class="fas fa-plus ml-1"></i></button>
                         </div>
                     </div>
                 </div>
@@ -259,59 +375,66 @@
         </section>
 
         <!-- 6. BURGERS -->
-        <section id="burgers" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-red section-card">
+        <section id="burgers" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-red">
             <div class="bg-red-50 p-4 flex items-center justify-between">
                 <h3 class="text-3xl text-yum-red section-title">Burgers</h3>
                 <i class="fas fa-hamburger text-2xl text-yum-red/30"></i>
             </div>
-            <div class="p-5 space-y-6">
-                
-                <!-- Beef Category -->
+            <div class="p-4 space-y-6">
+                <!-- Beef -->
                 <div>
                     <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Beef Collection</h4>
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="pr-2">
-                                <h5 class="font-bold text-gray-800 text-lg">Regular Beef</h5>
-                                <p class="text-xs text-gray-500 mt-1">Double Beef fillet + 2 Cheese + Hotdog</p>
+                                <h5 class="font-bold text-gray-800">Regular Beef</h5>
+                                <p class="text-xs text-gray-500 mt-1">Double Beef + 2 Cheese + Hotdog</p>
                             </div>
-                            <span class="font-bold text-yum-orange text-lg">N4,500</span>
+                            <button onclick="addToCart('Regular Beef Burger', 4500)" class="btn-add bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-bold border border-red-100 flex-shrink-0">
+                                N4,500 <i class="fas fa-plus ml-1"></i>
+                            </button>
                         </div>
                         <div class="flex justify-between items-start">
                             <div class="pr-2">
-                                <h5 class="font-bold text-gray-800 text-lg">Station Beef Burger</h5>
-                                <p class="text-xs text-gray-500 mt-1">3 Beef fillet + 2 Cheese + Suya + Hotdogs</p>
+                                <h5 class="font-bold text-gray-800">Station Beef Burger</h5>
+                                <p class="text-xs text-gray-500 mt-1">3 Beef + 2 Cheese + Suya + Hotdogs</p>
                             </div>
-                            <span class="font-bold text-yum-orange text-lg">N5,000</span>
+                            <button onclick="addToCart('Station Beef Burger', 5000)" class="btn-add bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-bold border border-red-100 flex-shrink-0">
+                                N5,000 <i class="fas fa-plus ml-1"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Chicken Category -->
+                <!-- Chicken -->
                 <div class="border-t border-gray-100 pt-4">
                     <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Chicken Collection</h4>
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="pr-2">
-                                <h5 class="font-bold text-gray-800 text-lg">Regular Chicken</h5>
+                                <h5 class="font-bold text-gray-800">Regular Chicken</h5>
                                 <p class="text-xs text-gray-500 mt-1">Chicken fillet + 1 Cheese</p>
                             </div>
-                            <span class="font-bold text-yum-orange text-lg">N4,500</span>
+                            <button onclick="addToCart('Regular Chicken Burger', 4500)" class="btn-add bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-bold border border-red-100 flex-shrink-0">
+                                N4,500 <i class="fas fa-plus ml-1"></i>
+                            </button>
                         </div>
                         <div class="flex justify-between items-start">
                             <div class="pr-2">
-                                <h5 class="font-bold text-gray-800 text-lg">Station Chicken Burger</h5>
-                                <p class="text-xs text-gray-500 mt-1">Chicken fillet + 2 Beef fillet + 2 Cheese + Hotdog</p>
+                                <h5 class="font-bold text-gray-800">Station Chicken Burger</h5>
+                                <p class="text-xs text-gray-500 mt-1">Chicken + 2 Beef + 2 Cheese + Hotdog</p>
                             </div>
-                            <span class="font-bold text-yum-orange text-lg">N5,500</span>
+                            <button onclick="addToCart('Station Chicken Burger', 5500)" class="btn-add bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-bold border border-red-100 flex-shrink-0">
+                                N5,500 <i class="fas fa-plus ml-1"></i>
+                            </button>
                         </div>
-                        <!-- Ultimate Burger -->
                         <div class="bg-yum-yellow/20 -mx-2 p-2 rounded-lg mt-2 flex justify-between items-start border border-yum-yellow/50">
                             <div class="pr-2">
-                                <h5 class="font-bold text-yum-red text-lg"><i class="fas fa-star text-xs"></i> Yummy Special</h5>
-                                <p class="text-xs text-gray-600 mt-1 font-medium">Chicken fillet + 2 Beef fillet + 3 Cheese + Suya + Hotdogs</p>
+                                <h5 class="font-bold text-yum-red"><i class="fas fa-star text-xs"></i> Yummy Special</h5>
+                                <p class="text-xs text-gray-600 mt-1">Chicken + 2 Beef + 3 Cheese + Suya + Hotdogs</p>
                             </div>
-                            <span class="font-bold text-yum-red text-lg">N6,000</span>
+                            <button onclick="addToCart('Yummy Special Burger', 6000)" class="btn-add bg-yum-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-md flex-shrink-0">
+                                N6,000 <i class="fas fa-plus ml-1"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -319,72 +442,78 @@
         </section>
 
         <!-- 7. SHAWARMA -->
-        <section id="shawarma" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-orange section-card">
+        <section id="shawarma" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-yum-orange">
             <div class="bg-orange-50 p-4 flex items-center justify-between">
                 <h3 class="text-3xl text-yum-orange section-title">Shawarma</h3>
                 <i class="fas fa-fire text-2xl text-yum-orange/30"></i>
             </div>
-            <div class="p-5 divide-y divide-gray-100">
+            <div class="p-4 divide-y divide-gray-100">
                 <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">Beef Shawarma</span>
-                    <span class="font-bold text-yum-orange text-xl">N4,500</span> 
+                    <span class="font-bold text-gray-800">Beef Shawarma</span>
+                    <button onclick="addToCart('Beef Shawarma', 4500)" class="btn-add bg-orange-50 text-yum-orange px-3 py-1 rounded-full text-sm font-bold border border-orange-100">
+                        N4,500 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
                 <div class="py-3 flex justify-between items-center">
-                    <span class="font-bold text-lg text-gray-800">Chicken Shawarma</span>
-                    <span class="font-bold text-yum-orange text-xl">N5,500</span> 
+                    <span class="font-bold text-gray-800">Chicken Shawarma</span>
+                    <button onclick="addToCart('Chicken Shawarma', 5500)" class="btn-add bg-orange-50 text-yum-orange px-3 py-1 rounded-full text-sm font-bold border border-orange-100">
+                        N5,500 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
                 <div class="py-3 flex justify-between items-center">
                     <div class="flex flex-col">
-                        <span class="font-bold text-lg text-gray-800">Station Shawarma</span>
+                        <span class="font-bold text-gray-800">Station Shawarma</span>
                         <span class="text-xs text-gray-500">Suya + Beef</span>
                     </div>
-                    <span class="font-bold text-yum-orange text-xl">N5,000</span> 
+                    <button onclick="addToCart('Station Shawarma', 5000)" class="btn-add bg-orange-50 text-yum-orange px-3 py-1 rounded-full text-sm font-bold border border-orange-100">
+                        N5,000 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
                 <div class="py-3 flex justify-between items-center bg-orange-50/50 -mx-2 px-2 rounded">
                     <div class="flex flex-col">
-                        <span class="font-bold text-lg text-yum-red">Yummy Special</span>
+                        <span class="font-bold text-yum-red">Yummy Special</span>
                         <span class="text-xs text-gray-600">Chicken + Beef + Suya</span>
                     </div>
-                    <span class="font-bold text-yum-red text-xl">N6,000</span> 
+                    <button onclick="addToCart('Yummy Special Shawarma', 6000)" class="btn-add bg-yum-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-md">
+                        N6,000 <i class="fas fa-plus ml-1"></i>
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- 8. STATION SPECIALS (Subs, Fries, Chips) -->
-        <section id="specials" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-purple-600 section-card ring-2 ring-purple-100">
+        <!-- 8. SPECIALS -->
+        <section id="specials" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-purple-600 ring-2 ring-purple-100">
             <div class="bg-purple-50 p-4 flex items-center justify-between">
                 <h3 class="text-3xl text-purple-700 section-title">Station Specials</h3>
                 <i class="fas fa-star text-2xl text-purple-600"></i>
             </div>
             
-            <div class="p-5 space-y-8">
-                
-                <!-- 9. Station Subs -->
+            <div class="p-4 space-y-6">
+                <!-- Subs -->
                 <div>
                     <h4 class="flex items-center gap-2 font-bold text-xl text-yum-dark mb-4">
                         <span class="bg-purple-100 text-purple-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
                         Station Subs
                     </h4>
-                    <div class="grid gap-3">
-                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100 shadow-sm">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100">
                             <span class="font-semibold text-gray-700">Beef Sub</span>
-                            <span class="font-bold text-yum-orange">N4,500</span> 
+                            <button onclick="addToCart('Beef Sub', 4500)" class="btn-add bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm font-bold border border-purple-100">N4,500 <i class="fas fa-plus ml-1"></i></button>
                         </div>
-                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100 shadow-sm">
+                        <div class="flex justify-between items-center border p-3 rounded-lg border-gray-100">
                             <span class="font-semibold text-gray-700">Chicken Sub</span>
-                            <span class="font-bold text-yum-orange">N5,500</span> 
+                            <button onclick="addToCart('Chicken Sub', 5500)" class="btn-add bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm font-bold border border-purple-100">N5,500 <i class="fas fa-plus ml-1"></i></button>
                         </div>
-                        <div class="flex justify-between items-center border p-3 rounded-lg border-purple-100 bg-purple-50 shadow-sm">
+                        <div class="flex justify-between items-center border p-3 rounded-lg border-purple-100 bg-purple-50">
                             <div class="flex flex-col">
                                 <span class="font-bold text-purple-700">Yummy Special Sub</span>
                                 <span class="text-xs text-gray-600">Chicken + Beef + Suya + Mozzarella</span>
                             </div>
-                            <span class="font-bold text-purple-700">N6,000</span> 
+                            <button onclick="addToCart('Yummy Special Sub', 6000)" class="btn-add bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">N6,000 <i class="fas fa-plus ml-1"></i></button>
                         </div>
                     </div>
                 </div>
-
-                <!-- 10. Loaded Fries -->
+                <!-- Loaded Fries -->
                 <div>
                     <h4 class="flex items-center gap-2 font-bold text-xl text-yum-dark mb-4">
                         <span class="bg-purple-100 text-purple-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
@@ -396,19 +525,18 @@
                                 <span class="font-bold text-gray-800">Regular Loaded</span>
                                 <span class="text-xs text-gray-500">Chicken + Hotdogs</span>
                             </div>
-                            <span class="font-bold text-yum-orange text-lg">N7,000</span> 
+                            <button onclick="addToCart('Regular Loaded Fries', 7000)" class="btn-add bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm font-bold border border-purple-100">N7,000 <i class="fas fa-plus ml-1"></i></button>
                         </div>
                         <div class="flex justify-between items-start">
                             <div class="flex flex-col">
                                 <span class="font-bold text-purple-700">Yumiloaded Special</span>
                                 <span class="text-xs text-gray-500">Beef + Chicken + Suya + Hotdog + Plantain</span>
                             </div>
-                            <span class="font-bold text-purple-700 text-lg">N7,500</span> 
+                            <button onclick="addToCart('Yumiloaded Special Fries', 7500)" class="btn-add bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">N7,500 <i class="fas fa-plus ml-1"></i></button>
                         </div>
                     </div>
                 </div>
-
-                <!-- 11. Chips -->
+                <!-- Chips -->
                 <div>
                     <h4 class="flex items-center gap-2 font-bold text-xl text-yum-dark mb-4">
                         <span class="bg-purple-100 text-purple-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
@@ -417,84 +545,72 @@
                     <div class="space-y-3">
                         <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
                             <span class="font-semibold text-gray-700">Chips + Yummy Sauce</span>
-                            <span class="font-bold text-yum-orange">N2,000</span>
+                            <button onclick="addToCart('Chips + Sauce', 2000)" class="btn-add bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm font-bold border border-purple-100">N2,000 <i class="fas fa-plus ml-1"></i></button>
                         </div>
                         <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
-                            <span class="font-semibold text-gray-700">Chicken & Chips + Yumi Sauce</span>
-                            <span class="font-bold text-yum-orange">N5,000</span>
+                            <span class="font-semibold text-gray-700">Chicken & Chips + Sauce</span>
+                            <button onclick="addToCart('Chicken & Chips + Sauce', 5000)" class="btn-add bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm font-bold border border-purple-100">N5,000 <i class="fas fa-plus ml-1"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 12. DRINKS & BEVERAGES -->
-        <section id="drinks" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-blue-400 section-card">
+        <!-- 12. DRINKS -->
+        <section id="drinks" class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-blue-400">
             <div class="bg-blue-50 p-4 flex items-center justify-between">
-                <h3 class="text-3xl text-blue-500 section-title">Drinks & Beverages</h3>
+                <h3 class="text-3xl text-blue-500 section-title">Drinks</h3>
                 <i class="fas fa-glass-cheers text-2xl text-blue-400/30"></i>
             </div>
-            <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                 <div class="flex justify-between items-center p-2 border-b border-gray-50">
                     <span class="text-gray-600">Water</span>
-                    <span class="font-bold text-yum-dark">N300</span>
+                    <button onclick="addToCart('Water', 300)" class="btn-add bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N300 <i class="fas fa-plus"></i></button>
                 </div>
                 <div class="flex justify-between items-center p-2 border-b border-gray-50">
                     <span class="text-gray-600">Soda (Coke/Fanta)</span>
-                    <span class="font-bold text-yum-dark">N500</span>
+                    <button onclick="addToCart('Soda', 500)" class="btn-add bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N500 <i class="fas fa-plus"></i></button>
                 </div>
                 <div class="flex justify-between items-center p-2 border-b border-gray-50">
                     <span class="text-gray-600">Predator</span>
-                    <span class="font-bold text-yum-dark">N600</span>
+                    <button onclick="addToCart('Predator', 600)" class="btn-add bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N600 <i class="fas fa-plus"></i></button>
                 </div>
                 <div class="flex justify-between items-center p-2 border-b border-gray-50">
                     <span class="text-gray-600">Malt / Fayrouz</span>
-                    <span class="font-bold text-yum-dark">N800</span>
+                    <button onclick="addToCart('Malt/Fayrouz', 800)" class="btn-add bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N800 <i class="fas fa-plus"></i></button>
                 </div>
                 <div class="flex justify-between items-center p-2 border-b border-gray-50">
                     <span class="text-gray-600">Viju Yoghurt</span>
-                    <span class="font-bold text-yum-dark">N800</span>
+                    <button onclick="addToCart('Viju Yoghurt', 800)" class="btn-add bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N800 <i class="fas fa-plus"></i></button>
                 </div>
                 <div class="flex justify-between items-center p-2 border-b border-gray-50">
                     <span class="text-gray-600">Hollandia Med</span>
-                    <span class="font-bold text-yum-dark">N900</span>
+                    <button onclick="addToCart('Hollandia Med', 900)" class="btn-add bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N900 <i class="fas fa-plus"></i></button>
                 </div>
                 <div class="flex justify-between items-center p-2 border-b border-gray-50">
                     <span class="text-gray-600">Chivita Active (Small)</span>
-                    <span class="font-bold text-yum-dark">N1,300</span>
+                    <button onclick="addToCart('Chivita Active Small', 1300)" class="btn-add bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N1,300 <i class="fas fa-plus"></i></button>
                 </div>
                 <div class="flex justify-between items-center p-2 border-b border-gray-50">
                     <span class="text-gray-600">Hollandia Big</span>
-                    <span class="font-bold text-yum-dark">N1,900</span>
+                    <button onclick="addToCart('Hollandia Big', 1900)" class="btn-add bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">N1,900 <i class="fas fa-plus"></i></button>
                 </div>
-                <!-- Parfait Highlight -->
+                <!-- Parfait -->
                 <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg md:col-span-2 mt-2">
                     <span class="font-bold text-yum-orange flex items-center gap-2"><i class="fas fa-ice-cream"></i> Parfait</span> 
-                    <span class="font-bold text-xl text-yum-dark">N3,000</span>
+                    <button onclick="addToCart('Parfait', 3000)" class="btn-add bg-white text-blue-600 px-4 py-2 rounded-full text-sm font-bold shadow-sm">N3,000 <i class="fas fa-plus"></i></button>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-yum-dark text-white mt-12 py-10 px-4 text-center">
+    <!-- Footer -->
+    <footer class="bg-yum-dark text-white mt-12 py-10 px-4 text-center mb-16">
         <div class="mb-8">
             <h2 class="font-brand text-4xl text-white mb-2">Yum Station</h2>
             <p class="text-gray-400 text-sm tracking-widest uppercase">Crave and Enjoy</p>
         </div>
-        
-        <div class="flex gap-6 justify-center items-center mb-10">
-             <a href="tel:08061781845" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-yum-yellow transition shadow-lg transform hover:-translate-y-1" aria-label="Call Us">
-                <i class="fas fa-phone-alt text-xl"></i>
-            </a>
-            <a href="https://instagram.com/yumstationfoods" target="_blank" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-pink-500 transition shadow-lg transform hover:-translate-y-1" aria-label="Instagram">
-                <i class="fab fa-instagram text-2xl"></i>
-            </a>
-            <a href="https://wa.me/2348061781845" target="_blank" class="bg-gray-800 w-12 h-12 rounded-full flex items-center justify-center text-white hover:bg-gray-700 hover:text-green-500 transition shadow-lg transform hover:-translate-y-1" aria-label="WhatsApp">
-                <i class="fab fa-whatsapp text-2xl"></i>
-            </a>
-        </div>
-
         <div class="border-t border-gray-800 pt-6">
             <p class="text-xs text-gray-500 mb-2">&copy; 2025 Yum Station. All rights reserved.</p>
             <p class="text-xs text-gray-600">
@@ -503,9 +619,179 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/2348061781845" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-green-600 transition animate-bounce z-50 hover:scale-110">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Sticky Cart Footer -->
+    <div id="sticky-cart-footer" class="fixed bottom-0 left-0 w-full bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] border-t border-gray-100 p-4 z-50 transform translate-y-full transition-transform duration-300 flex justify-between items-center">
+        <div class="flex flex-col">
+            <span class="text-xs text-gray-500 font-medium"><span id="footer-count">0</span> items selected</span>
+            <span class="text-xl font-bold text-yum-red font-brand" id="footer-total">N0</span>
+        </div>
+        <button onclick="toggleCart()" class="bg-yum-orange text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-orange-600 transition flex items-center gap-2">
+            View Cart <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
 
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/50 z-[60] hidden flex items-end sm:items-center justify-center backdrop-blur-sm transition-opacity">
+        <div class="bg-white w-full sm:w-96 sm:rounded-2xl rounded-t-3xl shadow-2xl overflow-hidden max-h-[85vh] flex flex-col">
+            <!-- Header -->
+            <div class="bg-yum-orange p-4 flex justify-between items-center text-white">
+                <h3 class="font-brand text-2xl">Your Order</h3>
+                <button onclick="toggleCart()" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Cart Items -->
+            <div id="cart-items-container" class="p-4 overflow-y-auto flex-1 space-y-3">
+                <!-- Items injected here by JS -->
+                <div class="text-center py-10 text-gray-400">
+                    <i class="fas fa-shopping-basket text-4xl mb-3 opacity-30"></i>
+                    <p>Your cart is empty.</p>
+                </div>
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="p-4 bg-gray-50 border-t border-gray-100">
+                <div class="flex justify-between items-end mb-4">
+                    <span class="text-gray-600 font-medium">Total Amount</span>
+                    <span class="text-2xl font-bold text-yum-dark" id="modal-total">N0</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl shadow-lg transition flex justify-center items-center gap-2">
+                    <i class="fab fa-whatsapp text-xl"></i> Checkout on WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-yum-dark text-white px-4 py-2 rounded-full shadow-lg text-sm font-medium transition-opacity duration-300 opacity-0 pointer-events-none z-[70] flex items-center gap-2">
+        <i class="fas fa-check-circle text-green-400"></i> <span id="toast-message">Item added</span>
+    </div>
+
+    <script>
+        // --- Shopping Cart Logic ---
+        let cart = [];
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            showToast(`Added ${name}`);
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartUI();
+        }
+
+        function updateQty(name, change) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    removeFromCart(name);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        function updateCartUI() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const formattedTotal = 'N' + totalPrice.toLocaleString();
+
+            // Update Badge
+            const badge = document.getElementById('nav-cart-count');
+            badge.textContent = totalQty;
+            badge.classList.toggle('hidden', totalQty === 0);
+
+            // Update Sticky Footer
+            document.getElementById('footer-count').textContent = totalQty;
+            document.getElementById('footer-total').textContent = formattedTotal;
+            
+            const stickyFooter = document.getElementById('sticky-cart-footer');
+            if (totalQty > 0) {
+                stickyFooter.classList.remove('translate-y-full');
+            } else {
+                stickyFooter.classList.add('translate-y-full');
+            }
+
+            // Update Modal Content
+            document.getElementById('modal-total').textContent = formattedTotal;
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 text-gray-400">
+                        <i class="fas fa-shopping-basket text-4xl mb-3 opacity-30"></i>
+                        <p>Your cart is empty.</p>
+                        <button onclick="toggleCart()" class="mt-4 text-yum-orange font-bold text-sm hover:underline">Start Ordering</button>
+                    </div>`;
+                return;
+            }
+
+            let html = '';
+            cart.forEach(item => {
+                html += `
+                    <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-yum-dark text-sm">${item.name}</h4>
+                            <p class="text-xs text-gray-500">N${item.price.toLocaleString()} each</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="updateQty('${item.name}', -1)" class="w-6 h-6 bg-white border border-gray-200 rounded text-gray-600 flex items-center justify-center hover:bg-gray-100">-</button>
+                            <span class="font-bold text-sm w-4 text-center">${item.qty}</span>
+                            <button onclick="updateQty('${item.name}', 1)" class="w-6 h-6 bg-yum-orange text-white rounded flex items-center justify-center hover:bg-orange-600">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast("Your cart is empty!");
+                return;
+            }
+
+            let message = "Hello Yum Station! I would like to place an order:\n\n";
+            let total = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                message += `▪ ${item.qty}x ${item.name} - N${subtotal.toLocaleString()}\n`;
+                total += subtotal;
+            });
+
+            message += `\n*TOTAL: N${total.toLocaleString()}*`;
+            
+            // Encode and open
+            const url = `https://wa.me/2348061781845?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('opacity-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
